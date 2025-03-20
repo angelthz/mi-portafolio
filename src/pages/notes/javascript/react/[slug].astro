@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+import { getMarkdownContent } from '../../../../services/Collections';
+import MarkdownTemplate from '../../../../components/MarkdownTemplate.astro';
+
+
+export async function  getStaticPaths(){
+    const notas = await getCollection('React');
+    return notas.map(nota=>({
+        params: {slug:nota.data.slug}
+    }));
+}
+
+const {slug} = Astro.params;
+const {Content, toc, frontmatter} = await getMarkdownContent('React', slug);
+---
+<Layout title={frontmatter.title} toc={toc} enableToc={true}>
+    <MarkdownTemplate>
+        <Content></Content>
+    </Markdown>
+</Layout>

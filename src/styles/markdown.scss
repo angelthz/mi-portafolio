@@ -1,0 +1,114 @@
+@font-face {
+    font-family: "Fira-Code";
+    src: url("/src/assets/font/FiraCode-Variable.ttf");
+}
+
+
+.markdown-content h1{
+    margin: 1rem 0;
+    font-size: 2rem;
+}
+
+.markdown-content h2{
+    font-size: 1.75rem;
+}
+
+.markdown-content h2::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 1rem auto;
+    background-color: var(--stroke-inactive);
+}
+
+.markdown-content h3{
+    font-size: 1.5rem;
+    padding-left: 1rem;
+}
+
+.markdown-content h4 {
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.2rem;
+    // vertical-align: middle;
+    // color: var(--text-300);
+}
+// .markdown-content h4::before{
+//     content: "";
+//     display: inline-block;
+//     width: 6px;
+//     height: 6px;
+//     margin-right: 0.25rem;
+//     vertical-align: middle;
+//     border-radius: var(--border-rounded);
+//     background-color: var(--stroke-active);
+// }
+.markdown-content h5{
+    padding-left: 0.5rem;
+    font-size: 1rem;
+}
+
+
+
+h1,h2,h3,h4,h5,h6{
+    margin: 1rem 0;
+    font-weight: bold;
+}
+
+h2,h3,h4,h5,h6{
+    color: var(--text-300);
+}
+
+.markdown-content p, .markdown-content ol, .markdown-content ul{
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0px;
+    text-align: justify;
+    color: var(--text-100);
+  
+}
+
+li{
+    overflow: hidden;
+}
+.markdown-content p>strong{
+    color: var(--text-200);
+}
+
+.markdown-content pre{
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-sm);
+    border: 2px solid var(--border-400);
+}
+
+.markdown-content code{
+    font-family: "Fira-Code",system-ui;
+    font-size: 0.9rem;
+}
+
+.markdown-content img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme='light'] .astro-code,
+[data-theme='light'] .astro-code span{
+    // background-color: var(--body-bg) !important;
+}
+
+[data-theme='dark'] .astro-code,
+[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+//   background-color: var(--shiki-dark-bg) !important;
+  background-color: var(--body-bg) !important;
+  /* Optional, if you also want font styles */
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}

@@ -1,0 +1,200 @@
+---
+import ThemeButton from "../ThemeButton.astro";
+import NavButton from "./NavButton.astro";
+import MessageIcon from "../../assets/svg/message.svg"
+import MenuButton from "../markdownnav/MenuButton.astro";
+
+interface Props{
+    routes: string[];
+    enableToc: boolean;
+};
+const {routes, enableToc=false} = Astro.props;
+const currentPath = new URL(Astro.request.url).pathname;
+const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPath);
+
+
+---
+<header class="header">
+    <div class="header-content">
+        <nav class="page-navbar">
+            <ul class="page-navbar-content"  data-init-translate=`${distance<0 ? 0 : distance*100}%`>
+                {
+                    routes.map((route,idx)=><NavButton route={route} idx={idx} tooltip={route.replaceAll("/","")}/>)
+                }
+            </ul>
+            <div class="nav-slider" aria-hidden="true">
+                <div class="nav-slider-circle" >&nbsp;</div>
+            </div>
+        </nav>
+        <aside class="secondary-navbar">
+            <ThemeButton></ThemeButton>
+            { !enableToc&& <a class="rounded-button contact-button" href="/contact/" data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
+            { enableToc && <MenuButton></MenuButton> }
+        </aside>
+    </div>
+</header>
+
+<style >
+    .header{
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        margin: 1rem auto;
+        
+    }
+
+    .header-content{
+        width: 98%;
+        height: 4rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        background-color: var(--main-bg-alpha);
+        border: 1px solid var(--main-border-color);
+        backdrop-filter: blur(15px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: var(--border-radius-lg);
+        /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
+        /* box-shadow: var(--shadow-sm); */
+        /* box-shadow: 0 1.2px 1.2px #0a0a0a0f,0 5px 10px #0a0a0a0a; */
+        box-shadow: rgba(10, 10, 10, 0.06) 0px 1.2px 1.2px 0px, rgba(10, 10, 10, 0.04) 0px 5px 10px 0px;
+    }
+
+    .main-navbar ul,
+    .secondary-navbar{
+        position: relative;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .main-navbar{
+        width: 40%;
+    }
+    .secondary-navbar{
+        width: 40%;
+        /* gap: 1rem; */
+        justify-content: end;
+    }
+
+    .contact-button{
+        background-color: var(--button-1-bg);
+        box-shadow: 0px 0px 0px 0px var(--button-1-bg);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .contact-button:hover{
+        box-shadow: 0px 0px 0px 3px var(--button-1-bg);
+    }
+    
+    .contact-button i>svg{
+        stroke: var(--light);
+    }
+
+
+    @media screen and (min-width:920px) {
+        .header{
+            /* top: 0rem; */
+        }
+        .header-content{
+            max-width: 768px;
+        }
+        .secondary-navbar{
+            max-width: 18%;
+            gap: 0.75rem;
+        }
+    }
+
+    .page-navbar{
+        width: 40%;
+        height: 100%;
+        user-select: none;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    
+    .page-navbar-content {
+        position: relative;
+    }
+
+    ul.page-navbar-content {
+        list-style-type: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    
+    .nav-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+
+    .nav-button svg {
+        pointer-events: none;
+        height: 28px;
+        width: 28px;
+        /* stroke: var(--stroke-inactive); */
+        transform: translate(0, 0);
+    }
+
+   
+    .active-icon{
+        stroke: var(--active) !important;
+        box-shadow:  0 0 5px 10px rgba(255,255,255,1);
+    }
+    
+    .nav-slider {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        padding: 0.25rem;
+        z-index: 0;
+        transition: transform 0.4s ease-in-out;
+        transform: translateX(var(--translate-value));
+    }
+
+    .nav-slider-circle {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        transition: background-color 0.4s ease-in-out;
+        background-color: var(--slider-bg);
+    }
+
+    .animate-jello {
+        animation: jelly 0.8s linear;
+    }
+ 
+</style>
+
+
+<script>
+    import "astro:transitions/client"
+    document.addEventListener("astro:page-load", () => {
+        const navContainer = document.querySelector(".page-navbar-content") as HTMLElement;
+        const navButtons = document.querySelectorAll(".nav-button") as NodeList;
+        const slider = document.querySelector(".nav-slider-circle") as HTMLElement;
+        document.documentElement.setAttribute("style",`--translate-value:${navContainer.dataset.initTranslate}`);
+        const runAnim = (translateValue:any) => {
+            slider.classList.remove("animate-jello");
+            slider.offsetWidth;
+            slider.classList.add("animate-jello");
+            document.documentElement.setAttribute("style",`--translate-value:${translateValue}`);
+        };
+        navButtons.forEach(nav=>nav.addEventListener("mouseover",()=>runAnim((nav as HTMLElement).dataset.translateValue)));
+        navButtons.forEach(nav=>nav.addEventListener("mouseout",()=>runAnim(navContainer.dataset.initTranslate)));
+});
+</script>

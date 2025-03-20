@@ -1,0 +1,100 @@
+---
+import { type Heading, type Toc } from "../../types/Types";
+interface Props {
+  heading: Toc;
+}
+
+const { heading } = Astro.props;
+---
+
+<ul class="first-level toc-li">
+  <li class="first-level-heading">
+    <a class="" href={"#" + heading.slug}> {heading.text} </a>
+    {
+      heading.children.length > 0 && (
+        <ul class="second-level toc-li">
+          {heading.children.map((head) => (
+            <li class="second-level-heading">
+              <a href={"#" + head.slug}>{head.text}</a>
+              <ul class="third-level toc-li">
+                {(head as Toc).children.length > 0 &&
+                  (head as Toc).children.map((child) => (
+                    <li class="third-level-heading">
+                      <a href={"#" + child.slug}>{child.text}</a>
+                    </li>
+                  ))}
+                {/* <Astro.self heading={(head as Heading).children)}></Astro.self> */}
+              </ul>
+            </li>
+          ))}
+          {/* {heading.children.map((child) => ( <Astro.self heading={child} /> ))} */}
+        </ul>
+      )
+    }
+  </li>
+</ul>
+
+<style>
+  .toc-li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  li > a {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  a {
+    text-decoration: none;
+    color: var(--text-100);
+    display: block;
+    padding: 0.5rem 0;
+  }
+  a:hover {
+    background-color: var(--hover-general);
+  }
+  
+  /* .first-level-heading>a{
+    color: var(--text-200);
+  }
+
+
+  .second-level-heading>a{
+    color: var(--text-100);
+  } */
+  .first-level:first-of-type > li > a {
+    border-top: 2px solid var(--border-400);
+  }
+  
+  .first-level-heading > a {
+    padding-left: 1rem;
+    border-bottom: 2px solid var(--border-400);
+    font-weight: 800;
+  }
+  .second-level-heading > a {
+    padding-left: 2rem;
+    border-bottom: 2px solid var(--border-400);
+    font-weight: 600;
+  }
+  .third-level-heading > a {
+    padding-left: 3rem;
+    border-bottom: 2px solid var(--border-400);
+    font-weight: 500;
+  }
+
+
+  @media screen and (min-width: 920px) {
+    a {
+      padding: 0;
+      border: none !important;
+      font-size: 0.9rem;
+      margin: 0.25rem 0;
+    }
+    a:hover {
+      background-color: transparent;
+      color: #00a6ed
+    }
+
+  }
+</style>

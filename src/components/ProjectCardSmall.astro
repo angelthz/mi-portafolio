@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+const {title, tag, imgSrc, imgAlt} = Astro.props;
+---
+
+<article class="small-card">
+    <figure class="">
+        <Image src={imgSrc} alt={imgAlt}></Image>
+        <figcaption>{title}</figcaption>
+    </figure>
+    <div class="card-text">
+        <p class="tags">Visit</p>
+    </div>
+</article>
+
+
+<style>
+    .small-card{
+        margin: 1rem 0;
+        padding: 0.8rem 2rem;
+        background-color: var(--bg-100);
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+        border-radius: var(--border-radius-md);
+    }
+    .small-card figure{
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        /* justify-items: center; */
+        align-items: center;
+        gap: 1rem;
+    }
+    .small-card figure>img{
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 4px solid var(--bg-400);
+    }
+    .small-card figure>figcaption{
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--text-400);
+    }
+
+    .small-card div>p{
+        padding: 0.25rem 0.8rem;
+        border-radius: 1rem;
+        display: inline-block;
+        background-color: var(--dark-hover);
+    }
+
+</style>    

@@ -1,0 +1,129 @@
+<div class="theme-button jelly-button">
+    <input class="theme-switch" type="checkbox" id="theme-switch" />
+    <label for="theme-switch">
+        <svg
+            class="light-icon"
+            id="light-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                class="fill-icon"
+                d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path
+                d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"
+            ></path></svg
+        >
+        <svg
+            class="dark-icon"
+            id="dark-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                class="fill-icon"
+                d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"
+            ></path><path
+                d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"
+            ></path><path d="M19 11h2m-1 -1v2"></path></svg
+        >
+    </label>
+</div>
+
+<style>
+    .theme-button {
+        position: relative;
+    }
+    .theme-button input[type="checkbox"] {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+
+    .theme-button:hover{
+        /* background-color: var(--bg-200); */
+        /* animation: jelly 0.7s linear; */
+    }
+    .fill-icon{
+        /* transition: all 0.4s ease-in-out; */
+    }
+    .theme-button:hover .fill-icon{
+        fill: var(--active);
+        animation: fill-icon 0.4s linear;
+    }
+    .theme-button:not(:hover) .fill-icon{
+        animation: unfill-icon 0.4s linear;
+    }
+    
+    .theme-switch:checked ~ label .dark-icon {
+        display: none;
+    }
+    
+    .theme-switch:not(:checked) ~ label .light-icon {
+        display: none;
+    }
+
+    .theme-button label {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .theme-button svg {
+        stroke: var(--text-400);
+    }
+
+    @keyframes fill-icon {
+        0%{
+            fill: transparent;
+        }
+        100%{
+            fill: var(--active);
+        }
+    }
+    @keyframes unfill-icon{
+        0%{
+            fill: var(--active);
+        }
+        100%{
+            fill: transparent;
+        }
+    }
+</style>
+
+<script>
+    import "astro:transitions/client"
+    document.addEventListener("astro:page-load",()=>{
+    const themeSwitch = document.getElementById("theme-switch") as HTMLInputElement;
+    
+    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+    // Get the current theme from local storage
+
+    function setTheme(theme: string): void {
+        document.documentElement.setAttribute("data-theme", theme);
+        // document.body.dataset.theme = theme;
+        window.localStorage.setItem("theme", theme);
+    }
+    //Set theme value from local storage or system
+
+    themeSwitch?.addEventListener("click", () => {
+        let theme: string = themeSwitch.checked ? "dark" : "light";
+        setTheme(theme);
+    });
+    
+    themeSwitch.checked = localStorageTheme === "light" ? false : true;
+});
+</script>

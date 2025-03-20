@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import profilePic from '../../assets/profile-pic.jpg';
+import { Image } from "astro:assets";
+
+---
+
+<Layout title="Sobre mi">
+    <section class="general-section">
+        <article class="about-me-article general-article">
+            <h1>Sobre mi</h1>
+            <p>
+                I'm Brian Do, a product designer with over 5 years of experience, currently residing in Jakarta, Indonesia. I have a deep passion for crafting purposeful interfaces and products. My main goal is to bridge the divide between people and technology, transforming intricate challenges into meaningful and seamless experiences.
+            </p>
+            <figure class="about-me-photo">
+                <Image
+                    src={profilePic}
+                    alt="Foto de perfil de Angel Hernandez"
+                />
+            </figure>
+        </article>
+    </section>
+    <section class="general-section">
+        <article class="about-me-article general-article">
+            <h2>Mi Educacion</h2>
+            <p>
+                I'm Brian Do, a product designer with over 5 years of experience, currently residing in Jakarta, Indonesia. I have a deep passion for crafting purposeful interfaces and products. My main goal is to bridge the divide between people and technology, transforming intricate challenges into meaningful and seamless experiences.
+            </p>
+        </article>
+    </section>
+    <section class="general-section">
+        <article class="about-me-article general-article">
+            <h2>Mas Sobre Mi</h2>
+            <p>
+                I'm Brian Do, a product designer with over 5 years of experience, currently residing in Jakarta, Indonesia. I have a deep passion for crafting purposeful interfaces and products. My main goal is to bridge the divide between people and technology, transforming intricate challenges into meaningful and seamless experiences.
+            </p>
+        </article>
+    </section>
+</Layout>
+
+<style>
+    
+    section{
+        background-color: transparent;
+        padding: 0 1rem;
+    }
+    
+
+    .about-me-photo{
+        max-width: 90%;
+        margin: 0 auto;
+        padding: 0.8rem;
+        background-color: var(--bg-400);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--border-radius-md);
+        /* border: thin solid var(--border-400); */
+        /* box-shadow: var(--shadow-xs); */
+    }
+    .about-me-photo img{
+        max-width: 100%;
+        height: auto;
+        border-radius: var(--border-radius-md);
+    }
+
+    @media screen and (min-width: 768px) {
+        .about-me-photo{
+            max-width: 50%;
+        }
+    }
+</style>

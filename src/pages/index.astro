@@ -1,11 +1,90 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import avatarVec from "../assets/avatar-vec.png";
+import ProfileSection from "../components/ProfileSection.astro";
+import { getCollection } from "astro:content";
+import SmallNavCard from "../components/SmallNavCard.astro";
+import MediumNavCard from "../components/MediumNavCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const exercisesCollection = await getCollection('exercises');
+const projectCollection = await getCollection('projects');
+
+
+// console.log(exercisesCollection)
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Inicio" >
+	<ProfileSection avatarImg={avatarVec}></ProfileSection>
+	<section class="projects-section general-section">
+		<header>
+			<h2 class="section-title">Proyectos</h2>
+			<a class="more-button squared-button" href="/projects/" aria-label="contact">
+				<span>Ver todos</span>
+				<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
+			</a>
+		</header>
+		{
+			projectCollection.map(project=><MediumNavCard
+				title={project.data.title}
+				tags={project.data.tags}
+				imgSrc={project.data.icon.src}
+				imgAlt={project.data.icon.alt}
+				url={project.data.slug}
+			></MediumNavCard>)
+		}
+	</section>
+
+	<section class="products-section general-section">
+		<header>
+			<h2 class="section-title">Ejercicios</h2>
+			<a class="more-button squared-button" href="/projects/" aria-label="contact">
+				<span>Ver todos</span>
+				<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
+			</a>
+		</header>
+		{
+			exercisesCollection.map(project=><SmallNavCard
+				title={project.data.title}
+				imgSrc={project.data.icon.src}
+				imgAlt={project.data.icon.alt}
+			></SmallNavCard>)
+		}
+	</section>
+
+	<section class="general-section">
+		<article class="general-article">
+			<h2>Mis Proyectos</h2>
+			<p>Discover my portfolio, where purposeful interfaces meet captivating design. My work strives to enhance experiences and inspire.</p>
+		</article>
+	</section>
+
 </Layout>
+
+<style>
+	.more-button{
+		border-radius: var(--border-rounded);
+		background-color: var(--button-4-bg);
+		color: var(--h-color);
+		box-shadow: 0 0 0 1px var(--button-4-border);
+	}
+	.more-button:hover{
+		box-shadow: 0 0 0 4px var(--button-4-border);
+	}
+	.more-button span{
+		display: none;
+	}
+
+	.section-title{
+		color: var(--p-color);
+	}
+
+	@media screen and (min-width:540px) {
+		.more-button{
+			border-radius: var(--border-radius-md);
+		}
+		.more-button span{
+			display: block;
+		}
+	}
+	
+</style>

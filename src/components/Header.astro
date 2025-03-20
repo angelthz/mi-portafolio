@@ -1,0 +1,79 @@
+---
+import SlidingNavbar from "./SlidingNavbar.astro";
+import ThemeButton from "./ThemeButton.astro";
+
+// const {navMode, mode} = Astro.props;
+---
+
+<header class="header">
+    <div class="header-content">
+        <SlidingNavbar></SlidingNavbar>
+        <aside class="secondary-navbar">
+            <ThemeButton></ThemeButton>
+            <!-- <div> -->
+                <a class="contact-button navigate-button" href="/contact/" aria-label="contact">Contacto</a>
+            <!-- </div> -->
+        </aside>
+    </div>
+</header>
+
+
+<style>
+    .header{
+        position: sticky;
+        top: 1rem;
+        z-index: 999;
+        width: 100%;
+        margin: 1rem auto;
+        
+    }
+
+    .header-content{
+        width: 95%;
+        height: 4rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        background-color: var(--bg-400-alpha);
+        border: 2px solid var(--border-400);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: var(--border-radius-lg);
+        /* box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1); */
+        box-shadow: var(--shadow-sm);
+    }
+
+    .main-navbar ul,
+    .secondary-navbar{
+        position: relative;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .main-navbar{
+        width: 40%;
+    }
+    .secondary-navbar{
+        width: 20%;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+    @media screen and (min-width:920px) {
+        .header{
+            /* max-width: 920px; */
+        }
+        .header-content{
+            max-width: 768px;
+        }
+        .secondary-navbar{
+            max-width: 18%;
+        }
+    }
+ 
+</style>

@@ -1,22 +1,81 @@
-<!doctype html>
+---
+import { ClientRouter, fade, slide } from 'astro:transitions';
+import "astro:transitions/client"
+
+import Footer from '../components/Footer.astro';
+import '../styles/global.scss'
+import NavBarHeader from '../components/nav/NavBarHeader.astro';
+import type { TocItem } from '../services/GenerateToc';
+import MarkdownNav from '../components/headers/MarkdownNav.astro';
+
+
+interface Props{
+    title?: string;
+    routes?: string[];
+    toc?: TocItem[];
+    enableToc?: boolean;
+}
+
+const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, toc} = Astro.props;
+---
+
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <ClientRouter></ClientRouter>
+</head>
+<body>
+    <NavBarHeader routes={routes} enableToc={enableToc}></NavBarHeader>
+	<main class="main">
+		<slot></slot>
+	</main>
+    <!-- { toc &&  <aside class="markdown-nav"> <TocNav headings={toc}></TocNav> </aside> } -->
+    { toc &&  <MarkdownNav headings={toc}></MarkdownNav>}
+	<Footer />
+</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+     body {
+        background-color: var(--body-bg);
+    }
+    .main{
+        width: 95%;
+        margin: 6rem auto 0 auto;
+        padding: 1rem 0.8rem;
+        background-color: var(--main-bg);
+        border-radius: var(--border-radius-xl);
+        border: 1px solid var(--main-border-color);
+        box-shadow: rgba(10, 10, 10, 0.06) 0px 1.2px 1.2px 0px, rgba(10, 10, 10, 0.04) 0px 5px 10px 0px;
+        /* box-shadow: var(--shadow-xs);0 */
+        /* box-shadow: 0px 0px 5px 0px rgba(207, 221, 226,0.5); */
+    }
+
+    @media screen and (min-width:920px) {
+        .main{
+            padding: 2rem 3rem;
+            max-width: 720px;
+        }
+    }
+    
 </style>
+
+<script>
+    import "astro:transitions/client"
+    document.addEventListener("astro:page-load",()=>{
+        const theme = (() => {
+            const localStorageTheme = localStorage?.getItem("theme") ?? "";
+            if (["dark", "light"].includes(localStorageTheme)) {
+                return localStorageTheme;
+            }
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                return "dark";
+            }
+            return "light";
+        })();
+        document.documentElement.setAttribute("data-theme", theme);
+    });
+</script>

@@ -1,0 +1,133 @@
+---
+import HomeIcon from '../../assets/svg/home.svg';
+import AboutIcon from '../../assets/svg/profile.svg';
+import PortfolioIcon from '../../assets/svg/portfolio.svg';
+import NotesIcon from '../../assets/svg/notebook.svg';
+import BackIcon from '../../assets/svg/arrow-back.svg';
+import type { NavButton, Route } from '../../types/Types';
+
+interface Props{
+    routes: Route[],
+};
+const {routes} = Astro.props;
+const currentPath = new URL(Astro.request.url).pathname;
+const distance = routes.map(route=>route.path).indexOf(currentPath) * 100;
+---
+<nav class="main-navbar" >
+    <ul class="nav-content" data-init-translate=`${distance<0?0:distance}%`>
+        {
+            routes.map((route,idx)=>
+                <li>
+                    <a 
+                        href={route.path} 
+                        class:list={[ 'nav-button', { "active": currentPath === route.path }]} 
+                        data-translate-value={`${idx*100}%`}
+                    >
+                    {route.name==="home"&&<HomeIcon class:list={[{ "active-icon": currentPath===route.path }]}></HomeIcon>}
+                    {route.name==="about"&&<AboutIcon class:list={[{ "active-icon": currentPath===route.path }]}></AboutIcon>}
+                    {route.name==="portfolio"&&<PortfolioIcon class:list={[{ "active-icon": currentPath===route.path }]}></PortfolioIcon>}
+                    {route.name==="notes"&&<NotesIcon class:list={[{ "active-icon": currentPath===route.path }]}></NotesIcon>}
+                    {route.name==="back" && <BackIcon class="active-icon"></BackIcon>}
+                    </a>
+                </li>
+            )
+        }
+    </ul>
+    <div class="nav-slider" aria-hidden="true">
+        <div class="nav-slider-circle" >&nbsp;</div>
+    </div>
+</nav>
+
+<style>
+    .main-navbar {
+        width: 40%;
+        height: 100%;
+        user-select: none;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-content {
+        position: relative;
+    }
+
+    ul.nav-content {
+        list-style-type: none;
+        display: flex;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.nav-content li {
+        display: inline-flex;
+        position: relative;
+        padding: 0.25rem;
+        z-index: 1;
+    }
+
+    .nav-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+
+    .nav-button svg {
+        pointer-events: none;
+        height: 28px;
+        width: 28px;
+        stroke: var(--stroke-inactive);
+        transform: translate(0, 0);
+    }
+
+   
+    .active-icon{
+        stroke: var(--stroke-active) !important;
+    }
+
+    .nav-slider {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        padding: 0.25rem;
+        z-index: 0;
+        transition: transform 0.4s ease-in-out;
+        transform: translateX(var(--translate-value));
+    }
+
+    .nav-slider-circle {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        transition: background-color 0.4s ease-in-out;
+        background-color: var(--hover-400);
+    }
+
+    .animate-jello {
+        animation: jelly 0.8s linear;
+    }
+
+</style>
+
+<script>
+    import "astro:transitions/client"
+    document.addEventListener("astro:page-load", () => {
+        const navContainer = document.querySelector(".nav-content") as HTMLElement;
+        const navButtons = document.querySelectorAll(".nav-button") as NodeList;
+        const slider = document.querySelector(".nav-slider-circle") as HTMLElement;
+        document.documentElement.setAttribute("style",`--translate-value:${navContainer.dataset.initTranslate}`);
+        const runAnim = (translateValue:any) => {
+            slider.classList.remove("animate-jello");
+            slider.offsetWidth;
+            slider.classList.add("animate-jello");
+            document.documentElement.setAttribute("style",`--translate-value:${translateValue}`);
+        };
+        navButtons.forEach(nav=>nav.addEventListener("mouseover",()=>runAnim((nav as HTMLElement).dataset.translateValue)));
+        navButtons.forEach(nav=>nav.addEventListener("mouseout",()=>runAnim(navContainer.dataset.initTranslate)));
+});
+</script>

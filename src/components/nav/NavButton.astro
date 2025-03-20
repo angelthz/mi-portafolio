@@ -1,0 +1,71 @@
+---
+import HomeIcon from '../../assets/svg/home.svg';
+import AboutIcon from '../../assets/svg/profile.svg';
+import PortfolioIcon from '../../assets/svg/portfolio.svg';
+import NotesIcon from '../../assets/svg/notebook.svg';
+import BackIcon from '../../assets/svg/arrow-back.svg';
+import MessageIcon from '../../assets/svg/message.svg';
+
+interface Props{
+    route: string;
+    idx: number;
+    tooltip: string
+};
+const currentPath = new URL(Astro.request.url).pathname;
+const {route, idx, tooltip} = Astro.props;
+---
+<li class="nav-li">
+    <a href={route} data-tip-text={tooltip===""?"home":tooltip}  class:list={[ 'nav-button', { "active": currentPath === route }]} data-translate-value={`${idx*100}%`}>
+        {route === "/"&&<HomeIcon class:list={[{ "active-icon": currentPath===route}]}></HomeIcon>}
+        {route === "/about/"&&<AboutIcon class:list={[{ "active-icon": currentPath===route}]}></AboutIcon>}
+        {route ==="/projects/"&&<PortfolioIcon class:list={[{ "active-icon": currentPath===route}]}></PortfolioIcon>}
+        {route ==="/notes/"&&<NotesIcon class:list={[{ "active-icon": currentPath===route}]}></NotesIcon>}
+        {route ==="/contact/"&&<MessageIcon class:list={[{ "active-icon": currentPath===route}]}></MessageIcon>}
+        {route ==="/back/" && <BackIcon class="active-icon"></BackIcon>}
+    </a>
+</li>
+
+<style>
+
+    .nav-li {
+        display: inline-flex;
+        position: relative;
+        padding: 0.25rem;
+        z-index: 1;
+    }
+
+     .nav-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    svg{
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nav-button:hover svg:not(.active-icon){
+        stroke: var(--inactive-hover);
+    }
+
+    .nav-button svg {
+        pointer-events: none;
+        height: 28px;
+        width: 28px;
+        stroke: var(--inactive);
+        transform: translate(0, 0);
+        border-radius: 50%;
+    }
+
+   
+    .active-icon{
+        stroke: var(--active) !important;
+        /* box-shadow: 0 0 15px 1px rgba(255,255,255,0.5); */
+        filter: drop-shadow( 0px 0px 2px var(--drop-shadow));
+
+    }
+</style>

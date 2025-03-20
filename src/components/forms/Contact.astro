@@ -1,0 +1,102 @@
+<form id="contact-form">
+    <fieldset class="contact-info">
+        <!-- <label for="name">Nombre</label> -->
+        <input type="text" name="name" id="name" placeholder="Nombre" required>
+        <!-- <label for="email">Correo</label> -->
+        <input type="email" name="email" id="email" placeholder="Correo electronico" required>
+    </fieldset>
+    <fieldset class="subject-info">
+        <input type="text" name="subject" id="subject" placeholder="Asunto" required>
+    </fieldset>
+    <!-- <label for="subject">Asunto</label> -->
+    <fieldset class="message-info">
+        <textarea name="comments" id="comments" placeholder="Comentarios"></textarea>
+    </fieldset>
+    <input class="squared-button" type="submit" value="Enviar">
+</form>
+
+<style>
+   
+    input[type="text"],input[type="email"], textarea{
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--input-bg);
+        /* border: 1px solid transparent; */
+        /* border: 2px solid var(--bg-400); */
+        border: none;
+        border-radius: var(--border-radius-md); 
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--h-color);
+        outline: none;
+    }
+
+    input::placeholder, textarea::placeholder{
+        color: var(--p-color);
+        /* font-weight: 600; */
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus{
+        /* outline: red; */
+        /* border: 1px solid var(--bg-100); */
+        /* border-color: white; */
+        color: var(--h-color);
+        /* font-size: 1rem; */
+        /* font-weight: 600; */
+        box-shadow: 0 0 0 1px var(--dash-bg);
+
+    }
+    input[type="submit"]{
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        background-color: var(--button-1-bg);
+        color: var(--light);
+        font-size: 1rem;
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: none;
+    }
+    
+    input[type="submit"]:hover{
+        box-shadow: none;
+        background-color: var(--hover-submit);
+    }
+
+    fieldset{
+        /* height: ; */
+        border: none;
+        padding: 0;
+        margin: 1.2rem auto;
+        /* border: thin solid red; */
+    }
+
+    .contact-info{
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+    .contact-info input{
+        width: 50%; 
+        display: inline-block;
+    }
+    textarea{
+        font-family: "Quicksand", system-ui;
+        font-size: 1.1rem;
+        resize: none;
+        display: block;
+        width: 100%;
+        height: 10rem;
+        color: var(--h-color);
+    }
+</style>
+
+<script>
+    //get form
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+
+    form.addEventListener("submit", e=>{
+        e.preventDefault();
+        
+    });
+    
+</script>

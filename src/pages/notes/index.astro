@@ -1,0 +1,120 @@
+---
+import CollapsibleMenu from "../../components/CollapsibleMenu.astro";
+import Layout from "../../layouts/Layout.astro";
+import {collectionMetadata} from '../../services/Collections';
+
+const cssNotesMetadata = await collectionMetadata("CSS");
+const jsParteUnoMetadata = await collectionMetadata("Javascript Parte Uno");
+const jsParteDosMetadata = await collectionMetadata("Javascript Parte Dos");
+const reactNotes = await collectionMetadata("React");
+const javaNotes = await collectionMetadata("Java");
+---
+
+<Layout title="Mis notas">
+    <section class="general-section">
+        <article class="notes-description general-article">
+            <h1 class="section-title">Mis notas</h1>
+            <p>
+                Hola, aquí podrás encontrar las notas de programación que he realizado durante
+                todo mi aprendizaje espero que te sean de ayuda.
+            </p>
+            <p>
+                Podras encontrar apuntes de temas relacionados al frontend basico lo cual incluye (CSS, HTML y Javascript),
+                tambien mis notas sobre React Js.
+            </p>
+            <p>
+                Y no termina aqui, tambien podras acceder a mis notas sobre temas relacioandos al Backend, especificamente
+                con Java, JSP, Hibernate y Spring Boot todo manejado con la base de datos mas conocida en todo el mundo MySQL.
+            </p>
+        </article>
+    </section>
+    <!-- <section class="section frontend">
+        <article class="html-notes">
+            <header >
+                <h2 class="section-title">HTML</h2>
+            </header>
+        </article>
+        <article class="css-notes">
+            <header >
+                <h2 class="section-title">CSS</h2>
+            </header>
+        </article>
+        <article class="javascript-notes">
+            <header >
+                <h2 class="section-title">Javascript</h2>
+            </header>
+        </article>
+        <article class="react-notes">
+            <header >
+                <h2 class="section-title">React Js</h2>
+            </header>
+        </article>
+    </section>
+    <section class="section backend">
+        <article class="java-notes">
+            <header >
+                <h2 class="section-title">Java</h2>
+            </header>
+        </article>
+        <article class="java-jdbc">
+            <header >
+                <h2 class="section-title">Java y JDBC</h2>
+            </header>
+        </article>
+        <article class="java-jpa">
+            <header >
+                <h2 class="section-title">JPA</h2>
+            </header>
+        </article>
+        <article class="java-servlet">
+            <header >
+                <h2 class="section-title">Java Servlets</h2>
+            </header>
+        </article>
+        <article class="java-spring">
+            <header >
+                <h2 class="section-title">Java Spring Boot</h2>
+            </header>
+        </article>
+    </section>
+    <section class="section data-bases">
+        <article class="mysql">
+            <header >
+                <h2 class="section-title">MySQL</h2>
+            </header>
+        </article>
+    </section> -->
+    
+    <section class="general-section">
+        <div class="container">
+            <header>
+                <h2>Frontend</h2>
+            </header>
+            <CollapsibleMenu category="javascript" meta={jsParteUnoMetadata} path="/notes/javascript/parte-uno/"></CollapsibleMenu>
+            <CollapsibleMenu category="javascript" meta={jsParteDosMetadata} path="/notes/javascript/parte-dos/"></CollapsibleMenu>
+            <CollapsibleMenu category="css" meta={cssNotesMetadata} path="/notes/css/"></CollapsibleMenu>
+            <CollapsibleMenu category="javascript" meta={reactNotes} path="/notes/javascript/react/"></CollapsibleMenu>
+        </div>
+    </section>
+    <section class="general-section">
+        <div class="container">
+            <header>
+                <h2>Backend</h2>
+            </header>
+            <CollapsibleMenu category="backend" meta={javaNotes} path="/notes/backend/java/"></CollapsibleMenu>
+            <!-- <CollapsibleMenu category="javascript" meta={jsParteUnoMetadata} path="/notes/javascript/parte-uno/"></CollapsibleMenu> -->
+            <!-- <CollapsibleMenu category="javascript" meta={jsParteDosMetadata} path="/notes/javascript/parte-dos/"></CollapsibleMenu> -->
+            <!-- <CollapsibleMenu category="css" meta={cssNotesMetadata} path="/notes/css/"></CollapsibleMenu> -->
+        </div>
+    </section>
+</Layout>
+
+<style>
+    section{
+        background-color: transparent;
+        padding: 0 1rem;
+    }
+    
+
+    
+</style>

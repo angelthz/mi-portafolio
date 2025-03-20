@@ -1,0 +1,49 @@
+---
+// const posts = await Astro.glob('../blog/*.md');
+interface Frontmatter {
+    layout: string,
+    title: string,
+    pubDate: string,
+    description: string,
+    author: string,
+    tags: string[],
+    slug: string,
+    category: string
+}
+
+interface Objeto{
+    frontmatter: Frontmatter,
+    file: ()=>string,
+    url: string,
+    rawContent: ()=>string,
+    compiledContent: ()=>string,
+    getHeadings:  ()=>string,
+    Content:  ()=>string,
+    default: ()=>string,
+}
+
+interface Post{
+    frontmatter: Frontmatter;
+    url: string;
+}
+
+const posts : Record<string, Objeto> = import.meta.glob('../blog/*.md', {eager:true});
+let urls : string[] = [];
+let publications : Post[] = [];
+// console.log(posts)
+
+for(const path in posts){
+    // console.log(posts[path].frontmatter.layout)
+    publications.push({
+        frontmatter : posts[path].frontmatter,
+        url: posts[path].url
+    })
+}
+console.log(publications)
+---
+
+<main>
+    <ul>
+        {publications.map(pub=>(<li><a href={pub.url}>{pub.frontmatter.title}</a></li>))}
+    </ul>
+</main>

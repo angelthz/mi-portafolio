@@ -1,0 +1,131 @@
+---
+import { height } from "@mui/system";
+import type { CollectionMeta } from "../types/Types";
+
+interface Props{
+  category: string;
+  path: string;
+  meta: CollectionMeta
+}
+const {category, path, meta} = Astro.props;
+---
+
+
+<div class="collapsible-menu">
+    <input type="checkbox" id={meta.collectionName} class="collapsible-checkbox" />
+    <label for={meta.collectionName} class="collapsible-label">
+      <i class="collapsible-icon"><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" /></svg></i>
+      <span class="category-name">{meta.collectionName}</span>
+    </label>
+    <div class="collapsible-content" style=`--items:${meta.collections.length}`>
+      <ul class="collapsible-nav">
+        {
+          meta.collections.map(metadata=> 
+            <li>
+              <a 
+                href={`${path}${metadata.slug}`}
+              >
+                  {metadata.title}
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+</div>
+
+<style>
+
+.collapsible-menu{
+
+}
+
+.collapsible-checkbox{
+  display:none;
+  width: 0;
+  height: 0;
+}
+.collapsible-checkbox:checked ~ .collapsible-content{
+  height: calc(var(--items) * var(--li-height));
+}
+
+.collapsible-checkbox:checked ~ .collapsible-label i:first-of-type>svg{
+   transform: rotate(180deg);
+}
+
+.collapsible-label i>svg{
+    transition: all 0.4s ease-in-out;
+}
+
+.collapsible-label{
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    display: flex;
+    border-top: 2px solid #ccc;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: var(--text-400);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.collapsible-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.collapsible-content{
+  --li-height:48px;
+  height:0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.collapsible-content ul{
+  list-style:none;
+  padding:0;
+  margin: 0;
+}
+
+.collapsible-content ul>li{
+    display: block;
+    height: var(--li-height);
+    padding: 0.5rem 1.5rem;
+}
+.collapsible-content ul>li:hover{
+     background-color: var(--bg-200);
+}
+
+.collapsible-nav li{
+    position: relative;
+}
+.collapsible-nav li>a{
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 1rem 2rem;
+    display: block;
+    vertical-align: middle;
+    text-decoration: none;
+    color: var(--text-300);
+    font-weight: 500;
+}
+
+
+.collapsible-menu:last-of-type .collapsible-nav li:last-of-type{
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+svg{
+    width: 32px;
+    height: 32px;
+}
+.category-name{
+  text-transform: capitalize;
+}
+</style>

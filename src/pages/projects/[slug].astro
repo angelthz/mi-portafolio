@@ -1,0 +1,70 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import '../../styles/markdown_project.scss'
+
+export const getStaticPaths = async () => {
+    const projects = await getCollection('projects'); 
+    return projects.map(project=>({
+        params: {slug: project.id}
+    }));
+}
+
+const {slug} = Astro.params;
+const entry = await getEntry('projects',slug);
+
+if (!entry) {
+   // Handle Error, for example:
+  throw new Error('Could not find the post');
+}
+const {Content} = await render(entry);
+
+---
+<Layout title={entry.data.title}>
+    <section class="project-header">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Cliente</td>
+                    <td>Name</td>
+                </tr>
+                <tr>
+                    <td>Company</td>
+                    <td>Name</td>
+                </tr>
+                <tr>
+                    <td>Project Type</td>
+                    <td>Type</td>
+                </tr>
+                <tr>
+                    <td>Year</td>
+                    <td>2022</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="project-body">
+        <article class="project">
+            <Content></Content>
+        </article>
+    </section>
+</Layout>
+
+<style>
+    .project-header{
+        /* padding: 0.5rem 1rem; */
+        background-color: var(--section-bg);
+        border-radius: var(--border-radius-md);
+        /* border: 1px solid #ccc; */
+        box-shadow: var(--shadow-xs);
+        color: var(--text-300);
+        font-weight: 500;
+        padding: 1rem;
+    }
+    .project-body{
+        padding: 1rem;
+    }
+    
+</style>

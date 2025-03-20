@@ -1,0 +1,95 @@
+---
+import type { Toc } from "../../types/Types";
+import TocHeading from "./TocHeading.astro";
+
+interface Props {
+  headings: Toc[];
+}
+// TableOfContents.astro
+const { headings } = Astro.props;
+// const items =['A', ['B', 'C'], 'D'] 
+
+// headings.forEach(head=>console.log("zzzz",head))
+// console.log(headings)
+---
+
+<aside class="markdown-toc">
+  <nav class="markdown-nav">
+    <header>
+      <h3>Contenido</h3>
+    </header>
+    <!-- <ul class="markdown-content-table"> -->
+      <!-- <TocHeading heading={headings[7]}></TocHeading> -->
+      {headings.map((heading) => <TocHeading heading={heading}/>)}
+    <!-- </ul> -->
+  </nav>
+</aside>
+
+<style>
+  .markdown-toc {
+    position: fixed;
+    top: 0rem;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.35s ease-in-out;
+    transform: translateX(150%);
+    background-color: var(--bg-400-hover);
+    backdrop-filter: blur(4px);
+    padding-top: 5.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .markdown-nav {
+    width: 90%;
+    height: 100%;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--main-bg);
+    overflow-y: scroll;
+    border: 1px solid var(--card-border-color);
+    /* padding: 0 1rem 1rem 1rem; */
+    padding-bottom: 1rem;
+  }
+
+  .markdown-nav header{
+    padding: 1rem;
+    border-bottom: 2px solid var(--main-border-color);
+
+  }
+  .markdown-nav h3{
+    margin: 0;
+  }
+
+  .markdown-content-table{
+    padding: 0;
+  }
+
+  @media screen and (min-width: 920px) {
+    .markdown-toc {
+      z-index: 9999;
+      right: 1.5rem;
+      width: 20%;
+      /* padding-top: 6rem; */
+      /* padding-bottom: 1rem; */
+      padding: 1rem 0;
+      transform: translateX(0);
+      /* border: thin solid greenyellow; */
+    }
+    .markdown-nav {
+      width: 100%;
+      /* height: 100%; */
+      /* border: none; */
+      box-shadow: var(--shadow-xs);
+      /* pad: 1rem 0; */
+    }
+    .markdown-nav>header{
+      /* border-bottom: 2px solid red; */
+      /* font-size: 1.1rem; */
+      /* margin-bottom: 1rem; */
+    }
+  }
+</style>

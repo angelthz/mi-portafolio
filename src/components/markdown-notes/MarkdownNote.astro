@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import MarkdownTemplate from "../MarkdownTemplate.astro";
+import { getMarkdownContent } from "../../services/Collections";
+import type { DataEntryMap } from "astro:content";
+
+interface Props{
+    collectionName : keyof DataEntryMap;
+};
+
+const {collectionName} = Astro.props;
+
+export async function  getStaticPaths():Promise<any>{
+    const notas = await getCollection(collectionName);
+    return notas.map(nota=>({
+        params: {slug:nota.data.slug},
+        
+    }));
+}
+const {slug} = Astro.params;
+const {Content, toc, frontmatter} = await getMarkdownContent(collectionName, slug);
+---
+<Layout title={frontmatter.title} toc={toc} enableToc={true}>
+    <MarkdownTemplate>
+        <Content></Content>
+    </Markdown>
+</Layout>

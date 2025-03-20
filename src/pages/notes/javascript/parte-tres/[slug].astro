@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import { getMarkdownContent } from '../../../../services/Collections';
+import Layout from '../../../../layouts/Layout.astro';
+
+export async function  getStaticPaths(){
+    const notas = await getCollection('Javascript Parte Dos');
+    return notas.map(nota=>({
+        params: {slug:nota.data.slug}
+    }));
+}
+const {slug} = Astro.params;
+const {Content, toc, frontmatter} = await getMarkdownContent('Javascript Parte Dos', slug);
+---
+<Layout title={frontmatter.title} toc={toc} enableToc={true}>
+    <Content ></Content>
+</Layout>

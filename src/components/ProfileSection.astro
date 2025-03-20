@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import Tooltip from "./tooltips/Tooltip.astro";
+const {avatarImg} = Astro.props;
+---
+
+<section class="profile-intro">
+    <aside>
+			<h2 class="tooltip" data-tip-text="Hello World" >Desarrollo Web</h2>
+			<h3 class="tooltip" data-tip-text="Hello Tooltip">y Programacion</h3>
+    </aside>
+    <article>
+        <figure class="avatar-img">
+            <Image
+                src={avatarImg}
+                alt="descriptive text"
+                width="150"
+                height="150"
+            />
+        </figure>
+        <div class="title">
+            <h1>Hola mi nombre es Ángel.</h1>
+        </div>
+        <div class="description">
+            <p class="">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+    </article>
+    <nav class="nav-info">
+        <a class="squared-button contact-button" href="/contact/" class="contact-button">
+			<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M12.01 18.594l-4.01 2.406v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" /><path d="M16 19h6" /><path d="M19 16v6" /></svg></i>
+			<span>Contacto</span>
+		</a>
+        <button class="squared-button email-button">
+			<i><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-copy"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg></i>
+			<span>Copy Email</span>
+		</button>
+    </nav>
+</section>
+
+
+<style>
+	
+	.profile-intro {
+		position: relative;
+		z-index: 1;
+        margin-bottom: 3rem;
+	}
+	article {
+		margin-top: 2rem;
+		text-align: center;
+	}
+
+	figure {
+		margin: 1rem 0;
+
+	}
+	figure img {
+		width: 200px;
+		height: 200px;
+		object-fit: contain;
+		background-color: #d9d9db;
+		border: 5px solid var(--bg-400);
+		border-radius: 50%;
+		/* box-shadow: ; */
+		transition: box-shadow 0.6s ease-in-out;
+		box-shadow: 
+		0 0 0 2px #f7f7f7,
+		0 0 0 6px var(--img-border-color),
+		0 0 0 8px #f0f0f0;
+
+	}
+
+	figure img:hover{
+		/* box-shadow: 0 0 25px 5px var(--bg-400); */
+	}
+
+	.title,
+	.description {
+		margin: 1.5rem 0;
+	}
+	.title h1 {
+		font-size: 2rem;
+		/* color: var(--dark) */
+	}
+
+	.description p {
+		max-width: 50%;
+		margin: 0 auto;
+		font-size: 1.2rem;
+		line-height: 1.5;
+		/* color: hsl(0, 0%, 15%); */
+
+		/* color: #666; */
+	}
+	aside {
+		margin-bottom: 2rem;
+		/* color: #666; */
+	}
+	aside h2 {
+		font-size: 1.3rem;
+		font-weight: 500;
+	}
+	nav{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+	.nav-info{
+		position: relative;
+		z-index: 1;
+	}
+	
+	.contact-button{
+		background-color: var(--button-1-bg);
+		color: var(--light);
+	}
+	.contact-button, .email-button{
+		/* box-shadow: 0px 0px 0px 1px var(--button-1-shadow); */
+		box-shadow: none;
+		border: thin solid var(--main-border-color);
+	}
+	.contact-button:hover,
+	.email-button:hover{
+		box-shadow: 0px 0px 0px 5px var(--button-1-shadow);
+	}
+	.email-button{
+		color: var(--active);
+		font-size: 1rem;
+		color: var(--h-color);
+	}
+	.email-button svg{
+		stroke: var(--active);
+		width: 20px;
+		height: 20px;
+	}
+
+	@media screen and (min-width: 768px) {
+        
+    }
+</style>

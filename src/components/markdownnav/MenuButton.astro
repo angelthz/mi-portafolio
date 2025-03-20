@@ -1,0 +1,59 @@
+<div class="">
+    <button class="menu-button jelly-button" id="menu-button" >
+        <svg
+            class="menu-icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M4 6l16 0"></path><path d="M4 12l16 0"></path><path
+                d="M4 18l16 0"></path></svg
+        >
+    </button>
+</div>
+
+<style>
+    .menu-button svg{
+        stroke: var(--active);
+    }
+    .menu-button{
+        /* background-color: var(--slider-bg); */
+        /* transition: all 0.5s ease-in-out; */
+    }
+    .slide-menu-button{
+        /* transform: rotateY(180deg); */
+        animation: slide 0.3s linear;
+    }
+
+    @keyframes slide {
+        0%{
+            transform: scale(-1,1);
+        }
+        100%{
+            transform: scale(1,1);
+        }
+        
+    }
+  
+</style>
+
+<script>
+    import "astro:transitions/client";
+    document.addEventListener("astro:page-load", () => {
+        const menuButton = document.getElementById("menu-button") as HTMLInputElement;
+        const markdownNav = document.querySelector( ".markdown-toc") as HTMLElement;
+        
+        menuButton?.addEventListener("click", (e) => {
+            markdownNav.classList.toggle("active-md-menu");
+            menuButton.classList.remove("slide-menu-button");
+            menuButton.offsetWidth;
+            menuButton.classList.add("slide-menu-button");
+            
+        });
+    });
+</script>

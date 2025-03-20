@@ -1,0 +1,134 @@
+---
+import ThemeButton from "../ThemeButton.astro";
+import {type Route} from "../../types/Types"
+import JellyButton from "./JellyButton.astro";
+import MenuButton from "../markdownnav/MenuButton.astro";
+
+interface Props{
+    routes: Route[];
+}
+
+const {routes} = Astro.props;
+
+const currentPath = new URL(Astro.request.url).pathname;
+---
+<header class="header">
+    <div class="header-content">
+        <!-- <SlidingBarReact client:load currentPath={currentPath}></SlidingBarReact> -->
+        <JellyButton routes={routes}></JellyButton>
+        <aside class="secondary-navbar">
+            <ThemeButton></ThemeButton>
+            {   routes.filter(route=>route.name==="back").length>0 ?
+                    <MenuButton></MenuButton>
+                    :
+                    <a class=" contact-button" href="/contact/" aria-label="contact">
+                        <svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M12.01 18.594l-4.01 2.406v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
+                    </a>
+            }
+        </aside>
+    </div>
+</header>
+
+
+<style>
+    .header{
+        position: fixed;
+        top: 0;
+        z-index: 999;
+        width: 100%;
+        margin: 1rem auto;
+        
+    }
+
+    .header-content{
+        width: 95%;
+        height: 4rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+        background-color: var(--bg-400-alpha);
+        border: 2px solid var(--border-400);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: var(--border-radius-lg);
+        /* box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1); */
+        box-shadow: var(--shadow-sm);
+    }
+
+    .main-navbar ul,
+    .secondary-navbar{
+        position: relative;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .main-navbar{
+        width: 40%;
+    }
+    .secondary-navbar{
+        width: 40%;
+        gap: 1rem;
+        justify-content: end;
+    }
+
+    .contact-button{
+        display: block;
+        position: relative;
+        width: var(--button-md);
+        height: var(--button-md);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--dark);
+        border-radius: var(--border-rounded);
+    }
+    .contact-button::before{
+        content: "";
+        position: absolute;
+        /* top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; */
+        z-index: -1;
+        display: block;
+        width: 38px;
+        height: 38px;
+        border-radius: var(--border-rounded);
+        background-color: var(--dark);
+        transition: all 0.3s ease-in-out;
+    }
+    .contact-button:hover{
+        /* background-color: hsl(0, 0%, 8%); */
+        /* filter: saturate(0.5); */
+    }
+    .contact-button:hover::before{
+        width: 46px;
+        height: 46px;
+        /* top: -4px; 
+        left: -4px; 
+        right: -4px; 
+        bottom: -4px; */
+    }
+
+    .contact-button svg{
+        stroke: var(--white);
+    }
+    @media screen and (min-width:920px) {
+        .header{
+            /* top: 0rem; */
+        }
+        .header-content{
+            max-width: 768px;
+        }
+        .secondary-navbar{
+            max-width: 18%;
+        }
+    }
+ 
+</style>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import MediumNavCard from "../../components/MediumNavCard.astro";
+import SmallNavCard from "../../components/SmallNavCard.astro";
+const projectsCollection = await getCollection('projects');
+const exercisesCollection = await getCollection('exercises');
+---
+
+<Layout title="Mis Proyectos">
+    <header>
+        <h1>Algunos de mis proyectos</h1>
+    </header>
+    <section class="personal-projects general-section">
+        <header>
+			<h2>Personales</h2>
+		</header>
+        {
+			projectsCollection.map(project=><MediumNavCard
+				title={project.data.title}
+				tags={project.data.tags}
+				imgSrc={project.data.icon.src}
+				imgAlt={project.data.icon.alt}
+				url={project.data.slug}
+			></MediumNavCard>)
+		}
+    </section>
+    <section class="programation-exercise projects general-section">
+        <header>
+			<h2>Ejercicios</h2>
+		</header>
+        {
+			exercisesCollection.map(project=><SmallNavCard
+				title={project.data.title}
+				imgSrc={project.data.icon.src}
+				imgAlt={project.data.icon.alt}
+			></SmallNavCard>)
+		}
+    </section>
+</Layout>
+
+
+<style>
+
+</style>
