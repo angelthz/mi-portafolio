@@ -62,7 +62,7 @@ const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, to
     }
     
 </style>
-
+<!-- 
 <script>
     import "astro:transitions/client"
     document.addEventListener("astro:page-load",()=>{
@@ -78,4 +78,15 @@ const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, to
         })();
         document.documentElement.setAttribute("data-theme", theme);
     });
+</script> -->
+
+<script>
+    function applyTheme() {
+      localStorage.theme === "dark"
+        ? document.documentElement.setAttribute("data-theme","dark")
+        : document.documentElement.setAttribute("data-theme", "light");
+    }
+  
+    document.addEventListener("astro:after-swap", applyTheme);
+    applyTheme();
 </script>

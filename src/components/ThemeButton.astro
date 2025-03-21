@@ -1,5 +1,5 @@
 <div class="theme-button jelly-button">
-    <input class="theme-switch" type="checkbox" id="theme-switch" />
+    <input class="theme-switch" type="checkbox" id="theme-switch"/>
     <label for="theme-switch">
         <svg
             class="light-icon"
@@ -44,8 +44,8 @@
         position: relative;
     }
     .theme-button input[type="checkbox"] {
-        width: 0;
-        height: 0;
+        /* width: 0; */
+        /* height: 0; */
         visibility: hidden;
     }
 
@@ -54,14 +54,15 @@
         /* animation: jelly 0.7s linear; */
     }
     .fill-icon{
-        /* transition: all 0.4s ease-in-out; */
+        transition: all 0.4s ease-in-out;
+        fill: transparent;
     }
     .theme-button:hover .fill-icon{
         fill: var(--active);
-        animation: fill-icon 0.4s linear;
+        /* animation: fill-icon 0.4s linear; */
     }
     .theme-button:not(:hover) .fill-icon{
-        animation: unfill-icon 0.4s linear;
+        /* animation: unfill-icon 0.4s linear; */
     }
     
     .theme-switch:checked ~ label .dark-icon {
@@ -86,44 +87,17 @@
         stroke: var(--text-400);
     }
 
-    @keyframes fill-icon {
-        0%{
-            fill: transparent;
-        }
-        100%{
-            fill: var(--active);
-        }
-    }
-    @keyframes unfill-icon{
-        0%{
-            fill: var(--active);
-        }
-        100%{
-            fill: transparent;
-        }
-    }
 </style>
 
 <script>
-    import "astro:transitions/client"
     document.addEventListener("astro:page-load",()=>{
-    const themeSwitch = document.getElementById("theme-switch") as HTMLInputElement;
-    
-    const localStorageTheme = localStorage?.getItem("theme") ?? "";
-    // Get the current theme from local storage
-
-    function setTheme(theme: string): void {
-        document.documentElement.setAttribute("data-theme", theme);
-        // document.body.dataset.theme = theme;
-        window.localStorage.setItem("theme", theme);
-    }
-    //Set theme value from local storage or system
-
-    themeSwitch?.addEventListener("click", () => {
-        let theme: string = themeSwitch.checked ? "dark" : "light";
-        setTheme(theme);
+        const themeSwitch = document.getElementById("theme-switch") as HTMLInputElement;
+        themeSwitch.addEventListener("change",()=>{
+            console.log(themeSwitch.checked)
+            const theme = themeSwitch.checked ? "dark" : "light";
+            document.documentElement.setAttribute("data-theme", theme);
+            window.localStorage.setItem("theme", theme);
+        });
+        themeSwitch.checked = localStorage.getItem("theme") === "dark" ? true : false;
     });
-    
-    themeSwitch.checked = localStorageTheme === "light" ? false : true;
-});
 </script>

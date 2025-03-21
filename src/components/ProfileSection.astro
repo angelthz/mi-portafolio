@@ -61,14 +61,15 @@ const {avatarImg} = Astro.props;
 		height: 200px;
 		object-fit: contain;
 		background-color: #d9d9db;
-		border: 5px solid var(--bg-400);
+		/* border: 5px solid var(--bg-400); */
 		border-radius: 50%;
 		/* box-shadow: ; */
 		transition: box-shadow 0.6s ease-in-out;
+	
 		box-shadow: 
-		0 0 0 2px #f7f7f7,
-		0 0 0 6px var(--img-border-color),
-		0 0 0 8px #f0f0f0;
+        inset 0 0 0 14px #e6e6e6,
+        inset 0 0 0 15px #f0f0f0,
+        0 0 0 1px #e6e6e6;
 
 	}
 
