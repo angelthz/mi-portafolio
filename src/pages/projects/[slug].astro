@@ -55,13 +55,20 @@ const {Content} = await render(entry);
 <style>
     .project-header{
         /* padding: 0.5rem 1rem; */
-        background-color: var(--section-bg);
+        background-color: var(--body-bg);
         border-radius: var(--border-radius-md);
         /* border: 1px solid #ccc; */
         box-shadow: var(--shadow-xs);
-        color: var(--text-300);
+        /* color: var(--text-300); */
         font-weight: 500;
         padding: 1rem;
+    }
+
+    .project-header tr td:first-of-type{
+        color: var(--h-color);
+    }
+    .project-header tr td:last-of-type{
+        color: var(--p-color);
     }
     .project-body{
         padding: 1rem;

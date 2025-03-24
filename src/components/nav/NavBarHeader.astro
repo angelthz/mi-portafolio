@@ -41,7 +41,6 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         z-index: 999;
         width: 100%;
         margin: 1rem auto;
-        
     }
 
     .header-content{
@@ -50,15 +49,12 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         margin: 0 auto;
         padding: 0 1rem;
         background-color: var(--main-bg-alpha);
-        border: 1px solid var(--main-border-color);
+        border: 1px solid var(--border-color-1);
         backdrop-filter: blur(15px);
         display: flex;
         justify-content: space-between;
         align-items: center;
         border-radius: var(--border-radius-lg);
-        /* box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2); */
-        /* box-shadow: var(--shadow-sm); */
-        /* box-shadow: 0 1.2px 1.2px #0a0a0a0f,0 5px 10px #0a0a0a0a; */
         box-shadow: rgba(10, 10, 10, 0.06) 0px 1.2px 1.2px 0px, rgba(10, 10, 10, 0.04) 0px 5px 10px 0px;
     }
 
@@ -73,23 +69,22 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         align-items: center;
     }
 
-
     .main-navbar{
         width: 40%;
     }
     .secondary-navbar{
         width: 40%;
-        /* gap: 1rem; */
         justify-content: end;
     }
 
     .contact-button{
-        background-color: var(--button-1-bg);
-        box-shadow: 0px 0px 0px 0px var(--button-1-bg);
+        background-color: var(--button-bg-1);
+        border: none;
+        box-shadow: 0px 0px 0px 0px var(--button-bg-1);
         transition: box-shadow 0.3s ease-in-out;
     }
     .contact-button:hover{
-        box-shadow: 0px 0px 0px 3px var(--button-1-bg);
+        box-shadow: 0px 0px 0px 3px var(--button-bg-1);
     }
     
     .contact-button i>svg{
@@ -102,7 +97,7 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
             /* top: 0rem; */
         }
         .header-content{
-            max-width: 768px;
+            max-width: 748px;
         }
         .secondary-navbar{
             max-width: 18%;
@@ -130,32 +125,6 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         margin: 0;
     }
 
-    
-    .nav-button {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-
-
-    .nav-button svg {
-        pointer-events: none;
-        height: 28px;
-        width: 28px;
-        /* stroke: var(--stroke-inactive); */
-        transform: translate(0, 0);
-    }
-
-   
-    .active-icon{
-        stroke: var(--active) !important;
-        box-shadow:  0 0 5px 10px rgba(255,255,255,1);
-    }
-    
     .nav-slider {
         pointer-events: none;
         position: absolute;
@@ -164,8 +133,10 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         z-index: 0;
         transition: transform 0.4s ease-in-out;
         transform: translateX(var(--translate-value));
+        display: flex;
+        align-content: center;
     }
-
+    
     .nav-slider-circle {
         height: 40px;
         width: 40px;
@@ -175,7 +146,7 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
     }
 
     .animate-jello {
-        animation: jelly 0.8s linear;
+        animation: jelly 0.7s linear;
     }
  
 </style>

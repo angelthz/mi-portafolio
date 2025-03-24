@@ -39,24 +39,21 @@ import { Image } from "astro:assets";
 </Layout>
 
 <style>
-    
     section{
         background-color: transparent;
         padding: 0 1rem;
     }
-    
-
     .about-me-photo{
         max-width: 90%;
         margin: 0 auto;
         padding: 0.8rem;
-        background-color: var(--bg-400);
+        background-color: var(--card-bg);
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: var(--border-radius-md);
-        /* border: thin solid var(--border-400); */
-        /* box-shadow: var(--shadow-xs); */
+        box-shadow: rgba(102, 109, 128, 0.08) 0px 1px 1px 0px, rgba(102, 109, 128, 0.08) 0px 4px 8px 0px, rgb(255, 255, 255) 0px 0px 0px 0px, rgba(53, 56, 73, 0) 0px 0px 0px 3px;
+        border: thin solid var(--border-color-2);
     }
     .about-me-photo img{
         max-width: 100%;

@@ -16,24 +16,22 @@ const {route, idx, tooltip} = Astro.props;
 ---
 <li class="nav-li">
     <a href={route} data-tip-text={tooltip===""?"home":tooltip}  class:list={[ 'nav-button', { "active": currentPath === route }]} data-translate-value={`${idx*100}%`}>
-        {route === "/"&&<HomeIcon class:list={[{ "active-icon": currentPath===route}]}></HomeIcon>}
-        {route === "/about/"&&<AboutIcon class:list={[{ "active-icon": currentPath===route}]}></AboutIcon>}
-        {route ==="/projects/"&&<PortfolioIcon class:list={[{ "active-icon": currentPath===route}]}></PortfolioIcon>}
-        {route ==="/notes/"&&<NotesIcon class:list={[{ "active-icon": currentPath===route}]}></NotesIcon>}
-        {route ==="/contact/"&&<MessageIcon class:list={[{ "active-icon": currentPath===route}]}></MessageIcon>}
-        {route ==="/back/" && <BackIcon class="active-icon"></BackIcon>}
+        {route === "/"&&<i><HomeIcon class:list={[{ "active-icon": currentPath===route}]} title='Inicio'></HomeIcon></i>}
+        {route === "/about/"&&<i><AboutIcon class:list={[{ "active-icon": currentPath===route}]} title='Sobre mi'></AboutIcon></i>}
+        {route ==="/projects/"&&<i><PortfolioIcon class:list={[{ "active-icon": currentPath===route}]} title='Proyectos y trabajos'></PortfolioIcon></i>}
+        {route ==="/notes/"&&<i><NotesIcon class:list={[{ "active-icon": currentPath===route}]} title='Notas'></NotesIcon></i>}
+        {route ==="/contact/"&&<i><MessageIcon class:list={[{ "active-icon": currentPath===route}]} title='Contacto'></MessageIcon></i>}
+        {route ==="/back/" && <i><BackIcon class="active-icon" title='Regresar'></BackIcon></i>}
     </a>
 </li>
 
 <style>
-
     .nav-li {
         display: inline-flex;
         position: relative;
         padding: 0.25rem;
         z-index: 1;
     }
-
      .nav-button {
         height: 40px;
         width: 40px;
@@ -43,29 +41,27 @@ const {route, idx, tooltip} = Astro.props;
         justify-content: center;
         cursor: pointer;
     }
-
     svg{
         transition: all 0.3s ease-in-out;
     }
-
     .nav-button:hover svg:not(.active-icon){
-        stroke: var(--inactive-hover);
-    }
+        stroke: var(--hover-1);
 
-    .nav-button svg {
+    }
+    .nav-button i{
+        display: flex;
+        align-content: center;
+    }
+    .nav-button i>svg {
         pointer-events: none;
         height: 28px;
         width: 28px;
-        stroke: var(--inactive);
+        stroke: var(--inactive-color);
         transform: translate(0, 0);
         border-radius: 50%;
     }
-
-   
     .active-icon{
-        stroke: var(--active) !important;
-        /* box-shadow: 0 0 15px 1px rgba(255,255,255,0.5); */
+        stroke: var(--active-color) !important;
         filter: drop-shadow( 0px 0px 2px var(--drop-shadow));
-
     }
 </style>

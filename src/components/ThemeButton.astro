@@ -1,6 +1,7 @@
 <div class="theme-button jelly-button">
     <input class="theme-switch" type="checkbox" id="theme-switch"/>
     <label for="theme-switch">
+        <span>Theme Switch</span>
         <svg
             class="light-icon"
             id="light-icon"
@@ -44,31 +45,22 @@
         position: relative;
     }
     .theme-button input[type="checkbox"] {
-        /* width: 0; */
-        /* height: 0; */
         visibility: hidden;
     }
 
     .theme-button:hover{
-        /* background-color: var(--bg-200); */
-        /* animation: jelly 0.7s linear; */
+        background-color: var(--slider-bg);
     }
     .fill-icon{
         transition: all 0.4s ease-in-out;
         fill: transparent;
     }
     .theme-button:hover .fill-icon{
-        fill: var(--active);
-        /* animation: fill-icon 0.4s linear; */
+        fill: var(--active-inverted);
     }
-    .theme-button:not(:hover) .fill-icon{
-        /* animation: unfill-icon 0.4s linear; */
-    }
-    
     .theme-switch:checked ~ label .dark-icon {
         display: none;
     }
-    
     .theme-switch:not(:checked) ~ label .light-icon {
         display: none;
     }
@@ -82,11 +74,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        span{
+            display: none;
+        }
     }
     .theme-button svg {
-        stroke: var(--text-400);
+        stroke: var(--active-inverted);
     }
-
 </style>
 
 <script>

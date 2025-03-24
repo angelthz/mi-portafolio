@@ -14,7 +14,7 @@ const tags:string[] = Astro.props.tags;
         </p>
     </div>
     <nav class="medium-card-nav">
-        <a href={`/projects/${url}`}>
+        <a href={`/projects/${url}`} aria-labelledby="Abrir enlace del proyecto">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -26,8 +26,9 @@ const tags:string[] = Astro.props.tags;
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
-                ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                    d="M9 6l6 6l-6 6"></path></svg
+                >
+                <title>{title}</title>
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg
             >
         </a>
     </nav>
@@ -39,28 +40,38 @@ const tags:string[] = Astro.props.tags;
         width: 100%;
         margin: 1rem auto;
         padding: 1rem 2rem;
-        border: 1px solid var(--card-border-color);
+        border: 1px solid var(--border-color-2);
         background-color: var(--card-bg);
-        border-radius: var(--border-radius-lg);
-        box-shadow: 0px 0px 0px 1px var(--card-shadow);
+        border-radius: var(--border-radius-md);
+        /* box-shadow: 0px 0px 0px 1px var(--card-shadow); */
         transition: box-shadow 0.35s ease-in-out;
     }
 
     .medium-card:hover{
-        box-shadow: 0px 0px 0px 6px var(--card-shadow);
+        box-shadow: 0px 0px 0px 6px var(--shadow-color-3);
     }
 
     .medium-card-img{
         margin-bottom: 0.5rem;
     }
     .medium-card-img img{
-        max-width: 62px;
+        max-width: 42px;
         height: auto;
         border-radius: 50%;
         background-color: var(--card-bg);
-        border: 6px solid var(--img-border-color);
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 0.8px 0.8px 0px, rgba(0, 0, 0, 0.04) 0px 3.2px 6.4px 0px;
+        /* box-shadow: 
+            0px 0px 0px 10px var(--shadow-color-3),
+            inset 0 0 0 1px red,
+            inset 0 0 0 1px yellowgreen; */
+        /* border: 5px solid var(--section-bg); */
         /* box-shadow: 0px 0px 4px 0px var(--card-border-color); */
-        box-shadow: 0 0 0 1px #f7f7f7,0 0 0 5px var(--img-border-color),0 0 0 6px #f0f0f0;
+        /* box-shadow: 0 0 0 1px #f7f7f7,0 0 0 5px var(--img-border-color),0 0 0 6px #f0f0f0; */
+        /* box-shadow:
+            0 0 0 10px var(--section-bg),
+        	inset 0 0 0 1px var(--border-color-2),
+        	inset 0 0 10px 5px red,
+            0 0 0 1px var(--border-color-2); */
     }
     .medium-card-text {
         margin-top: 0.5rem;
@@ -70,7 +81,6 @@ const tags:string[] = Astro.props.tags;
     }
     .medium-card-text h3{
         font-size: 1.5rem;
-        color: var(--text-400);
     }
     .medium-card-text p{
         font-weight: 500;
@@ -93,12 +103,12 @@ const tags:string[] = Astro.props.tags;
     }
 
     .medium-card-nav a > svg {
-        stroke: var(--svg-hover-inactive);
+        stroke: var(--svg-inactive);
         stroke-width: 4px;
         transition: all 0.3s ease-in-out;
     }
     .medium-card-nav a:hover > svg {
-        stroke: var(--svg-hover-active);
+        stroke: var(--svg-active);
         transform: translateX(0.4rem) scale(1.1);
     }
 

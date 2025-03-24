@@ -18,7 +18,11 @@ slug : 'mp3-lyrics'
 Una herramienta web que te permite obtener y sincronizar las letras de canciones en formato ".mp3", asi mismo te 
 ofrece la capacidad de editar las etiquetas de los ficheros manualmente.
 
-<a class="squared-button" href="https://mp3-lyrics.vercel.app/" target="_blank">Live Preview</a>
+<a class="live-button" href="https://mp3-lyrics.vercel.app/" target="_blank">
+    <div>
+        <span>Live Preview</span>
+    </div>
+</a>
 
 ![Mp3 Lyrics Web Screenshoot](./images/mp3/mp3-1.png)
 

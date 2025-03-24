@@ -47,39 +47,32 @@ const { heading } = Astro.props;
   }
   a {
     text-decoration: none;
-    color: var(--text-100);
+    color: var(--p-color);
     display: block;
     padding: 0.5rem 0;
+    transition: background-color 0.2s ease-in-out;
   }
   a:hover {
-    background-color: var(--hover-general);
+    background-color: var(--hover-2);
   }
   
-  /* .first-level-heading>a{
-    color: var(--text-200);
-  }
-
-
-  .second-level-heading>a{
-    color: var(--text-100);
-  } */
   .first-level:first-of-type > li > a {
-    border-top: 2px solid var(--border-400);
+    border-top: 1px solid var(--border-color-2);
   }
   
   .first-level-heading > a {
     padding-left: 1rem;
-    border-bottom: 2px solid var(--border-400);
+    border-bottom: 1px solid var(--border-color-2);
     font-weight: 800;
   }
   .second-level-heading > a {
     padding-left: 2rem;
-    border-bottom: 2px solid var(--border-400);
+    border-bottom: 1px solid var(--border-color-2);
     font-weight: 600;
   }
   .third-level-heading > a {
     padding-left: 3rem;
-    border-bottom: 2px solid var(--border-400);
+    border-bottom: 1px solid var(--border-color-2);
     font-weight: 500;
   }
 
@@ -93,7 +86,7 @@ const { heading } = Astro.props;
     }
     a:hover {
       background-color: transparent;
-      color: #00a6ed
+      color: #7e00ed
     }
 
   }

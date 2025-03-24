@@ -1,0 +1,83 @@
+html[data-theme="light"]{
+    --body-bg: #f0f0f0;
+    --main-bg: #ffffff;
+    --main-bg-alpha: rgba(255, 255, 255,0.8);
+    --section-bg: #f7f7f7;
+    --input-bg: #f7f7f7;
+    --profile-bg: #d7d7d9;
+    --card-bg: #fff;
+    --tooltip-bg: rgba(5, 5, 5, 0.5);
+    --slider-bg: #f0f0f0;
+    
+    --button-bg-1: #141414;
+    --button-bg-2: #212121;
+    --button-bg-3: #fff;
+    --button-bg-4: #fff;
+
+    --border-color-1: #e6e6e6;
+    --border-color-2: #e6e6e6;
+    --border-color-3: #2b2b2b;
+    --border-color-4: #e3e3e3;
+
+    --shadow-color-1: #eaeaea;
+    --shadow-color-2: #1c1c1c;
+    --shadow-color-3: #e6e6e6;
+    --shadow-color-4: #e6e6e6;
+    
+    --h-color: #373737;
+    --p-color: #666666;
+
+    --svg-active: #9d9d9d;
+    --svg-inactive: #6f6f6f;
+    --active-color: #242424;
+    --inactive-color: #a1a1a1;
+    --dash-color: #ccc;
+    --active-inverted: #161616;
+
+    --hover-1: #7a7a7a;
+    --hover-2: #f0f0f0;
+    --hover-3: #373737;
+}
+
+html[data-theme="dark"]{
+    --body-bg: #161616;
+    --main-bg: #212121;
+    --main-bg-alpha: rgba(33, 33, 33,0.8);
+    --section-bg: #2c2c2c;
+    --input-bg: #2c2c2c;
+    --profile-bg: #d9d9da;
+    --card-bg: #373737;
+    --tooltip-bg: #424242;
+    --slider-bg: #383838;
+
+    --button-bg-1: #383838;
+    --button-bg-2: #212121;
+    --button-bg-3: #212121;
+    --button-bg-4: #373737;
+
+    --border-color-1: #2b2b2b;
+    --border-color-2: #424242;
+
+    --border-color-3: #2c2c2c;
+    --border-color-4: #2b2b2b;
+    
+    --shadow-color-1: #1c1c1c;
+    --shadow-color-2: #1c1c1c;
+    --shadow-color-3: #252525;
+    --shadow-color-4: #252525;
+
+    --h-color: #ffffff;
+    --p-color: #c0c0c0;
+    
+    --svg-active: #9d9d9d;
+    --svg-inactive: #6f6f6f;
+    --active-color: #e6e6e6;
+    --inactive-color: #595959;
+    --dash-color: #616161;
+    --active-inverted: #fff;
+
+    --hover-1:#808080;
+    --hover-2: #424242;
+    --hover-3: #424242;
+    color-scheme: only dark;
+}

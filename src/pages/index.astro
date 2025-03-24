@@ -19,8 +19,10 @@ const projectCollection = await getCollection('projects');
 		<header>
 			<h2 class="section-title">Proyectos</h2>
 			<a class="more-button squared-button" href="/projects/" aria-label="contact">
-				<span>Ver todos</span>
+				<div>
+					<span>Ver todos</span>
 				<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
+				</div>
 			</a>
 		</header>
 		{
@@ -38,8 +40,10 @@ const projectCollection = await getCollection('projects');
 		<header>
 			<h2 class="section-title">Ejercicios</h2>
 			<a class="more-button squared-button" href="/projects/" aria-label="contact">
-				<span>Ver todos</span>
-				<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
+				<div>
+					<span>Ver todos</span>
+					<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
+				</div>
 			</a>
 		</header>
 		{
@@ -62,13 +66,14 @@ const projectCollection = await getCollection('projects');
 
 <style>
 	.more-button{
-		border-radius: var(--border-rounded);
-		background-color: var(--button-4-bg);
-		color: var(--h-color);
-		box-shadow: 0 0 0 1px var(--button-4-border);
+		background-color: var(--button-bg-4);
+		
 	}
-	.more-button:hover{
-		box-shadow: 0 0 0 4px var(--button-4-border);
+	.more-button div{
+		box-shadow: 
+		0px 1px 1px 0px rgba(23, 23, 23, 0.04), 
+		inset 0px -1px 1px 0px rgba(66,66,66,0.1),
+		0px 0px 0px 0.1px rgba(0, 0, 0, 0.16);
 	}
 	.more-button span{
 		display: none;
