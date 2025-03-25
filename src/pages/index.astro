@@ -3,14 +3,11 @@ import Layout from "../layouts/Layout.astro";
 import avatarVec from "../assets/avatar-vec.png";
 import ProfileSection from "../components/ProfileSection.astro";
 import { getCollection } from "astro:content";
-import SmallNavCard from "../components/SmallNavCard.astro";
-import MediumNavCard from "../components/MediumNavCard.astro";
+import SmallNavCard from "../components/cards/SmallNavCard.astro";
+import MediumNavCard from "../components/cards/MediumNavCard.astro";
 
 const exercisesCollection = await getCollection('exercises');
 const projectCollection = await getCollection('projects');
-
-
-// console.log(exercisesCollection)
 ---
 
 <Layout title="Inicio" >

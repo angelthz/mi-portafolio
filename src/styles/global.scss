@@ -167,37 +167,6 @@ p{
   stroke: var(--active-color);
 }
 
-// .squared-button{
-//   padding: 0.5rem;
-//   text-align: center;
-//   align-content: center;
-//   text-decoration: none;
-//   font-weight: 600;
-//   background-color: transparent;
-//   border-radius: var(--border-radius-md);
-//   border:none;
-//   box-shadow: 
-// 		0px 1px 1px 0px hwb(0 9% 91% / 0.04), 
-// 		inset 0px -1px 1px 0px rgba(204,204,204,0.1),
-// 		0px 0px 0px 0.1px rgba(0, 0, 0, 0.08);
-//   transition: box-shadow 0.3s ease-in-out;
-//   cursor: pointer;
-//   display: flex;
-// 	justify-content: space-between;
-// 	align-items: center;
-// 	gap: 0.25rem;
-// }
-
-// .squared-button i{
-//   display: flex;
-// 	justify-content: space-between;
-// 	align-items: center;
-// }
-
-// .squared-button:hover{
-//   // box-shadow: 0px 0px 0px 4px var(--dark);
-// }
-
 .squared-button{
   padding: 0;
   border: none;
@@ -255,6 +224,35 @@ p{
 }
 
 
+[data-tip-text]{
+  position: relative;
+}
+
+[data-tip-text]::before{
+  content: attr(data-tip-text);
+  position: absolute;
+  top: 0;
+  padding: 1px 8px;
+  display: block;
+  margin: 0 auto;
+  opacity: 0;
+  background-color: var(--tooltip-bg);
+  color: var(--light);
+  transition: all 0.35s ease-in-out;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 1rem;
+  text-transform: capitalize;
+  pointer-events: none;
+}
+
+[data-tip-text]:hover::before{
+  top: -1.5rem;
+  opacity: 1;
+}
+
+
 @media screen and (min-width: 920px) {
   
   .active-md-menu{
@@ -292,33 +290,7 @@ p{
   }
 }
 
-[data-tip-text]{
-  position: relative;
-}
 
-[data-tip-text]::before{
-  content: attr(data-tip-text);
-  position: absolute;
-  top: 0;
-  padding: 1px 8px;
-  display: block;
-  margin: 0 auto;
-  opacity: 0;
-  background-color: var(--tooltip-bg);
-  color: var(--light);
-  transition: all 0.35s ease-in-out;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-align: center;
-  border-radius: 1rem;
-  text-transform: capitalize;
-  pointer-events: none;
-}
-
-[data-tip-text]:hover::before{
-  top: -1.5rem;
-  opacity: 1;
-}
 
 // /* Chrome, Edge and Safari */
 // *::-webkit-scrollbar {

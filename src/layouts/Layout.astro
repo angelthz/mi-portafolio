@@ -2,11 +2,11 @@
 import { ClientRouter, fade, slide } from 'astro:transitions';
 import "astro:transitions/client"
 
-import Footer from '../components/Footer.astro';
+import Footer from '../components/footer/Footer.astro';
 import '../styles/global.scss'
-import NavBarHeader from '../components/nav/NavBarHeader.astro';
+import NavBarHeader from '../components/header/NavBarHeader.astro';
 import type { TocItem } from '../services/GenerateToc';
-import MarkdownNav from '../components/headers/MarkdownNav.astro';
+import MarkdownToc from '../components/contentTable/MarkdownToc.astro';
 
 
 interface Props{
@@ -33,7 +33,7 @@ const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, to
 		<slot></slot>
 	</main>
     <!-- { toc &&  <aside class="markdown-nav"> <TocNav headings={toc}></TocNav> </aside> } -->
-    { toc &&  <MarkdownNav headings={toc}></MarkdownNav>}
+    { toc &&  <MarkdownToc headings={toc} />}
 	<Footer />
 </body>
 </html>

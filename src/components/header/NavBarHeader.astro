@@ -1,8 +1,8 @@
 ---
-import ThemeButton from "../ThemeButton.astro";
 import NavButton from "./NavButton.astro";
 import MessageIcon from "../../assets/svg/message.svg"
-import MenuButton from "../markdownnav/MenuButton.astro";
+import ThemeButton from "./ThemeButton.astro";
+import TocButton from "./TocButton.astro";
 
 interface Props{
     routes: string[];
@@ -29,7 +29,7 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         <aside class="secondary-navbar">
             <ThemeButton></ThemeButton>
             { !enableToc&& <a class="rounded-button contact-button" href="/contact/" data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
-            { enableToc && <MenuButton></MenuButton> }
+            { enableToc && <TocButton></TocButton> }
         </aside>
     </div>
 </header>

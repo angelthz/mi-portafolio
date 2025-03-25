@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import MediumNavCard from "../../components/MediumNavCard.astro";
-import SmallNavCard from "../../components/SmallNavCard.astro";
+import MediumNavCard from "../../components/cards/MediumNavCard.astro";
+import SmallNavCard from "../../components/cards/SmallNavCard.astro";
 const projectsCollection = await getCollection('projects');
 const exercisesCollection = await getCollection('exercises');
 ---

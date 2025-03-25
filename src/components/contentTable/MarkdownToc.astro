@@ -1,6 +1,6 @@
 ---
 import type { Toc } from "../../types/Types";
-import TocHeading from "./TocHeading.astro";
+import TocList from "./TocList.astro";
 
 interface Props {
   headings: Toc[];
@@ -20,7 +20,7 @@ const { headings } = Astro.props;
     </header>
     <!-- <ul class="markdown-content-table"> -->
       <!-- <TocHeading heading={headings[7]}></TocHeading> -->
-      {headings.map((heading) => <TocHeading heading={heading}/>)}
+      {headings.map((heading) => <TocList heading={heading}/>)}
     <!-- </ul> -->
   </nav>
 </aside>
