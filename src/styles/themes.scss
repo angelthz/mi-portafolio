@@ -23,6 +23,7 @@ html[data-theme="light"]{
     --shadow-color-2: #1c1c1c;
     --shadow-color-3: #e6e6e6;
     --shadow-color-4: #e6e6e6;
+    --drop-shadow: rgba(55,55,55,0.5);
     
     --h-color: #373737;
     --p-color: #666666;
@@ -65,6 +66,7 @@ html[data-theme="dark"]{
     --shadow-color-2: #1c1c1c;
     --shadow-color-3: #252525;
     --shadow-color-4: #252525;
+    --drop-shadow: rgba(255,255,255,0.5);
 
     --h-color: #ffffff;
     --p-color: #c0c0c0;
