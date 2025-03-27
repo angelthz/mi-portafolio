@@ -8,9 +8,10 @@ import MediumNavCard from "../components/cards/MediumNavCard.astro";
 
 const exercisesCollection = await getCollection('exercises');
 const projectCollection = await getCollection('projects');
+const description = `Bienvenido a mi página y portafolio personal, aqui podras encontrar informacion relacionada a mi trabajo.`;
 ---
 
-<Layout title="Inicio" >
+<Layout title="Inicio" description={description}>
 	<ProfileSection avatarImg={avatarVec}></ProfileSection>
 	<section class="projects-section general-section">
 		<header>

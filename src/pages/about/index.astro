@@ -2,10 +2,10 @@
 import Layout from "../../layouts/Layout.astro";
 import profilePic from '../../assets/profile-pic.jpg';
 import { Image } from "astro:assets";
-
+const description = `En esta seccion podras encontrar informacion acerca de mi como mis estudios, intereses, hobbies, etc.`;
 ---
 
-<Layout title="Sobre mi">
+<Layout title="Sobre mi" description={description}>
     <section class="general-section">
         <article class="about-me-article general-article">
             <h1>Sobre mi</h1>

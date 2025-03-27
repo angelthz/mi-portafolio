@@ -11,12 +11,13 @@ import MarkdownToc from '../components/contentTable/MarkdownToc.astro';
 
 interface Props{
     title?: string;
+    description?: string;
     routes?: string[];
     toc?: TocItem[];
     enableToc?: boolean;
 }
 
-const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, toc} = Astro.props;
+const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, toc, description} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -24,6 +25,7 @@ const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, to
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {title && <meta name="description" content={description}/>}
     <title>{title}</title>
     <ClientRouter></ClientRouter>
 </head>

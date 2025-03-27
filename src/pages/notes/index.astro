@@ -8,9 +8,10 @@ const jsParteUnoMetadata = await collectionMetadata("Javascript Parte Uno");
 const jsParteDosMetadata = await collectionMetadata("Javascript Parte Dos");
 const reactNotes = await collectionMetadata("React");
 const javaNotes = await collectionMetadata("Java");
+const description = `Aqui podras encontrar mis apuntes sobre diversos temas relacionados a la programación.`;
 ---
 
-<Layout title="Mis notas">
+<Layout title="Mis notas" description={description}>
     <section class="general-section">
         <article class="notes-description general-article">
             <h1 class="section-title">Mis notas</h1>

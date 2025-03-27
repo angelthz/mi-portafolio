@@ -5,9 +5,10 @@ import MediumNavCard from "../../components/cards/MediumNavCard.astro";
 import SmallNavCard from "../../components/cards/SmallNavCard.astro";
 const projectsCollection = await getCollection('projects');
 const exercisesCollection = await getCollection('exercises');
+const description = `Te muestro los proyectos en los que he trabajado.`;
 ---
 
-<Layout title="Mis Proyectos">
+<Layout title="Mis Proyectos" description={description}>
     <header>
         <h1>Algunos de mis proyectos</h1>
     </header>
