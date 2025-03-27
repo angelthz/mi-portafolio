@@ -5,37 +5,10 @@ img {
 }
 
 .project a {
-    display: block;
-    max-width: 8rem;
-    border: none;
-    background-color: var(--button-bg-1);
-    border-radius: var(--border-radius-md);
-    color: var(--light);
-    font-family: "Quicksand", system-ui;
-    font-size: 1.1rem;
+    padding: 0.70rem;
     font-weight: 700;
-    text-decoration: none;
-    transition: box-shadow 0.4s ease-in-out;
-    // border: 2px solid var(--border-color-1);
-    box-shadow: 0 0 0 2px var(--shadow-color-1);
-}
-
-.project a>div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    padding: 0.6rem 0.5rem;
-    border-radius: inherit;
-    // border: thin solid var(--border-color-1);
-    box-shadow:
-        0px 1px 1px 0px rgba(23, 23, 23, 0.04),
-        inset 0px -1px 1px 0px rgba(204, 204, 204, 0.1),
-        0px 0px 0px 0.1px rgba(0, 0, 0, 0.08);
-}
-
-.project a:hover{
-    box-shadow: 0 0 0 5px var(--shadow-color-1);
+    background-color: var(--button-bg-1);
+    color: var(--light);
 }
 
 .project h1 {
@@ -52,4 +25,10 @@ img {
     text-align: justify;
     line-height: 1.5;
     // letter-spacing: 1px;
+}
+
+@media screen and (min-width:540px) {
+    .project a {
+        max-width: 10rem;
+    }
 }

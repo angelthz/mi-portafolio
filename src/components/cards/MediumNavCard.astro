@@ -4,15 +4,17 @@ const{title,imgSrc,imgAlt,url} = Astro.props;
 const tags:string[] = Astro.props.tags;
 ---
 <article class="medium-card">
-    <figure class="medium-card-img">
-        <Image src={imgSrc} alt={imgAlt} />
-    </figure>
-    <div class="medium-card-text">
+    <section class="card-header">
+        <figure class="card-img">
+            <Image src={imgSrc} alt={imgAlt} />
+        </figure>
         <h3 class="card-title">{title}</h3>
-        <p class="card-tags">
-            {tags.map(tag=><span>{tag}</span>)}
-        </p>
-    </div>
+    </section>
+    <section class="tags">
+        <ul class="tags-list">    
+            {tags.map(tag=><li>{tag}</li>)}
+        </ul>
+    </section>
     <nav class="medium-card-nav">
         <a href={`/projects/${url}`} aria-labelledby="Abrir enlace del proyecto">
             <svg
@@ -43,7 +45,6 @@ const tags:string[] = Astro.props.tags;
         border: 1px solid var(--border-color-2);
         background-color: var(--card-bg);
         border-radius: var(--border-radius-md);
-        /* box-shadow: 0px 0px 0px 1px var(--card-shadow); */
         transition: box-shadow 0.35s ease-in-out;
     }
 
@@ -51,45 +52,39 @@ const tags:string[] = Astro.props.tags;
         box-shadow: 0px 0px 0px 6px var(--shadow-color-3);
     }
 
-    .medium-card-img{
-        margin-bottom: 0.5rem;
-    }
-    .medium-card-img img{
-        max-width: 42px;
-        height: auto;
-        border-radius: 50%;
-        background-color: var(--card-bg);
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 0.8px 0.8px 0px, rgba(0, 0, 0, 0.04) 0px 3.2px 6.4px 0px;
-        /* box-shadow: 
-            0px 0px 0px 10px var(--shadow-color-3),
-            inset 0 0 0 1px red,
-            inset 0 0 0 1px yellowgreen; */
-        /* border: 5px solid var(--section-bg); */
-        /* box-shadow: 0px 0px 4px 0px var(--card-border-color); */
-        /* box-shadow: 0 0 0 1px #f7f7f7,0 0 0 5px var(--img-border-color),0 0 0 6px #f0f0f0; */
-        /* box-shadow:
-            0 0 0 10px var(--section-bg),
-        	inset 0 0 0 1px var(--border-color-2),
-        	inset 0 0 10px 5px red,
-            0 0 0 1px var(--border-color-2); */
-    }
-    .medium-card-text {
-        margin-top: 0.5rem;
+    .card-header{
+        margin-bottom: 1rem;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        justify-content: space-between;
+        align-items: start;
+        gap: 1rem;
     }
-    .medium-card-text h3{
+
+    .card-header h3{
         font-size: 1.5rem;
     }
-    .medium-card-text p{
-        font-weight: 500;
+
+    .card-img{
+        width: 64px;
+        height: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: inset 0 0 100px 1px var(--body-bg);
+        border-radius: 50%;
+        img{
+            border-radius: inherit;
+            width: 48px;
+            height: 48px;
+            box-shadow: 0 0 20px 5px var(--border-color-2);
+        }
     }
     .medium-card-nav {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
+        right: 1.5rem;
         bottom: 0;
     }
     .medium-card-nav a {
@@ -112,23 +107,59 @@ const tags:string[] = Astro.props.tags;
         transform: translateX(0.4rem) scale(1.1);
     }
 
+    .tags-list{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    .tags-list li{
+
+        padding: 0 0.5rem;
+        background-color: var(--tag-bg);
+        border-radius: 2rem;
+        color: var(--p-color);
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.9rem;
+        filter: drop-shadow( 0px 0px 1px var(--drop-shadow));
+    }
+    @media screen and (min-width: 420px) {
+        .card-header{
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
+        }
+    }
+
     @media screen and (min-width: 720px) {
   
         .medium-card{
-            padding: 1.25rem 1rem;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            gap: 2rem;
+            padding: 1rem 2rem;
         }
 
         .medium-card-img{
-            display: block;
+            flex-direction: column;
+            align-items: start;
             margin: 0;
+        }
+
+        .medium-card-img img{
+            max-width: 52px;
         }
 
         .medium-card-text{
             margin: 0;
+        }
+        .medium-card-img h3{
+            font-size: 1.6rem;
+            font-weight: 600;
         }
     }
 </style>

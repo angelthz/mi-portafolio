@@ -4,47 +4,103 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Error">
     <section class="">
-        <svg viewBox="0 0 32 32" xml:space="preserve" fill="#000000">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> 
-                <circle class="st0" cx="16" cy="16" r="13"></circle> 
-                <line class="st0" x1="9" y1="16" x2="14" y2="16"></line> 
-                <line class="st0" x1="18" y1="16" x2="23" y2="16"></line> 
-                <path class="st0" d="M8,21l1-1c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0 c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0c0.6-0.6,1.4-0.6,2,0l1,1"></path> 
-            </g>
-        </svg>
-        <h1 class="">
-            Página no encontrada.
-        </h1>
+        <i class="emoji-error">
+            <svg viewBox="0 0 32 32" xml:space="preserve" fill="#000000">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <circle class="st0" cx="16" cy="16" r="13"></circle>
+                    <line class="st0" x1="9" y1="16" x2="14" y2="16"></line>
+                    <line class="st0" x1="18" y1="16" x2="23" y2="16"></line>
+                    <path
+                        class="st0"
+                        d="M8,21l1-1c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0 c0.6-0.6,1.4-0.6,2,0l0,0c0.6,0.6,1.4,0.6,2,0l0,0c0.6-0.6,1.4-0.6,2,0l1,1"
+                    ></path>
+                </g>
+            </svg>
+        </i>
+        <h1 class="">Error</h1>
         <p>
-            La página o recurso solicitado no existe o bien ha ocurrido un error al cargar el recurso solicitado.
+            La página o recurso solicitado no existe o bien ha ocurrido un error
+            al cargarlo, por favor recargue la página o regrese al inicio.
         </p>
-        <a href="/">
-            Volver al inicio
+        <a href="/" class="squared-button home-button">
+            <div>
+                <span>Volver al inicio</span>
+                <i>
+                    <svg style="transform: scale(-1,1);" width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home-move"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2" /><path d="M19 12h2l-9 -9l-9 9h2v7a2 2 0 0 0 2 2h5.5" /><path d="M16 19h6" /><path d="M19 16l3 3l-3 3" /></svg>
+                </i>
+            </div>
         </a>
     </section>
 </Layout>
 
-
 <style>
-    section{
+    section {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }
-    section svg{
-        width: 160px;
-        height: 160px;
-        fill:none;
-        stroke:var(--stroke-inactive);
-        stroke-width:2;
-        stroke-linecap:round;
-        stroke-linejoin:round;
-        stroke-miterlimit:10;
+    h1 {
+        font-size: 4rem;
+        color: var(--inactive-color);
+        text-align: center;
     }
-    
+    p {
+        margin: 1.5rem auto;
+        color: var(-h-color);
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .home-button {
+        background-color: var(--button-bg-1);
+        color: var(--light);
+    }
+    .emoji-error svg {
+        width: 100px;
+        height: 100px;
+        fill: none;
+        stroke: var(--inactive-color);
+        stroke-width: 2.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        transform: skew(-15deg, 2deg);
+    }
+    .emoji-error {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .emoji-error::before,
+    .emoji-error::after {
+        content: "4";
+        font-size: 120px;
+        color: var(--inactive-color);
+        vertical-align: top;
+        font-family: "Franklin Gothic Medium", system-ui;
+        display: inline-block;
+        font-weight: 500;
+        /* font-style: normal; */
+    }
 
+    @media screen and (min-width: 540px) {
+        h1 {
+            font-size: 4.5rem;
+        }
+        .emoji-error svg {
+            width: 150px;
+            height: 150px;
+        }
+        .emoji-error::before,
+        .emoji-error::after {
+            font-size: 160px;
+        }
+    }
 </style>
