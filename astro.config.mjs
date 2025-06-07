@@ -15,5 +15,7 @@ export default defineConfig({
         dark: 'one-dark-pro',
       },
     }
-  }
+  },
+  site: "https://angelthz.github.io",
+  base: "/mi-portafolio"
 });

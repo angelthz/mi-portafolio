@@ -6,17 +6,19 @@ import NotesIcon from '../../assets/svg/notebook.svg';
 import BackIcon from '../../assets/svg/arrow-back.svg';
 import MessageIcon from '../../assets/svg/message.svg';
 
+
 interface Props{
     route: string;
     idx: number;
     tooltip: string
 };
+const BASE_URL = import.meta.env.BASE_URL;
 const currentPath = new URL(Astro.request.url).pathname;
 const {route, idx, tooltip} = Astro.props;
 ---
 <li class="nav-li">
     <a href={route} data-tip-text={tooltip===""?"Inicio":tooltip.replaceAll("-"," ")}  class:list={[ 'nav-button', { "active": currentPath === route }]} data-translate-value={`${idx*100}%`}>
-        {route === "/"&&<i><HomeIcon class:list={[{ "active-icon": currentPath===route}]} title='Inicio'></HomeIcon></i>}
+        {route === BASE_URL &&<i><HomeIcon class:list={[{ "active-icon": currentPath===route}]} title='Inicio'></HomeIcon></i>}
         {route === "/sobre-mi/"&&<i><AboutIcon class:list={[{ "active-icon": currentPath===route}]} title='Sobre mi'></AboutIcon></i>}
         {route ==="/portafolio/"&&<i><PortfolioIcon class:list={[{ "active-icon": currentPath===route}]} title='Proyectos y trabajos'></PortfolioIcon></i>}
         {route ==="/notas/"&&<i><NotesIcon class:list={[{ "active-icon": currentPath===route}]} title='Notas'></NotesIcon></i>}
