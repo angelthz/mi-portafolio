@@ -8,18 +8,18 @@ interface Props{
     routes: string[];
     enableToc: boolean;
 };
+const BASE_URL = import.meta.env.BASE_URL;
 const {routes, enableToc=false} = Astro.props;
 const currentPath = new URL(Astro.request.url).pathname;
 const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPath);
-
-
+const sanitizedRoutes = routes.map(route => route.replaceAll("/mi-portafolio",""));
 ---
 <header class="header">
     <div class="header-content">
         <nav class="page-navbar">
             <ul class="page-navbar-content"  data-init-translate=`${distance<0 ? 0 : distance*100}%`>
                 {
-                    routes.map((route,idx)=><NavButton route={route} idx={idx} tooltip={route.replaceAll("/","")}/>)
+                    sanitizedRoutes.map((route,idx)=><NavButton route={route} idx={idx} tooltip={route.replaceAll("/","")}/>)
                 }
             </ul>
             <div class="nav-slider" aria-hidden="true">
@@ -28,7 +28,7 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         </nav>
         <aside class="secondary-navbar">
             <ThemeButton></ThemeButton>
-            { !enableToc&& <a class="rounded-button contact-button" href="/contacto/" data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
+            { !enableToc&& <a class="rounded-button contact-button" href={`${BASE_URL}/contacto`} data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
             { enableToc && <TocButton></TocButton> }
         </aside>
     </div>

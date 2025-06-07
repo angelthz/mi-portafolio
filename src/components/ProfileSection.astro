@@ -1,58 +1,110 @@
 ---
 import { Image } from "astro:assets";
-const {avatarImg} = Astro.props;
+const { avatarImg } = Astro.props;
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <section class="profile-section">
-    <aside>
+	<aside>
 		<h2 class="tooltip">Desarrollo Web</h2>
 		<p>Disponible</p>
-    </aside>
-    <article class="profile-card">
+	</aside>
+	<article class="profile-card">
 		<section class="profile-img">
-            <Image
-                src={avatarImg}
-                alt="descriptive text"
-                width="150"
-                height="150"
-            />
+			<Image
+				src={avatarImg}
+				alt="descriptive text"
+				width="150"
+				height="150"
+			/>
 		</section>
 		<section class="profile-info">
 			<h1>Hola mi nombre es Ángel.</h1>
 			<p class="">Bienvenido a mi portafolio web.</p>
 			<nav class="profile-nav">
-				<a class="squared-button contact-button" href="/contact/" class="contact-button">
-						<div class="button-content">
-							<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9h8" /><path d="M8 13h6" /><path d="M12.01 18.594l-4.01 2.406v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5" /><path d="M16 19h6" /><path d="M19 16v6" /></svg></i>
-							<span>Contacto</span>
-						</div>
-				</a>
-				<button class="squared-button email-button">
+				<a
+					class="squared-button contact-button"
+					href=`${BASE_URL}/contacto/`
+					class="contact-button"
+				>
 					<div class="button-content">
-						<i><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-copy"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" /><path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></svg></i>
+						<i
+							><svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><path
+									stroke="none"
+									d="M0 0h24v24H0z"
+									fill="none"></path><path d="M8 9h8"
+								></path><path d="M8 13h6"></path><path
+									d="M12.01 18.594l-4.01 2.406v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v5.5"
+								></path><path d="M16 19h6"></path><path
+									d="M19 16v6"></path></svg
+							></i
+						>
+						<span>Contacto</span>
+					</div>
+				</a>
+				<button class="squared-button email-button" id="email-btn">
+					<div class="button-content copy">
+						<i
+							><svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="icon icon-tabler icons-tabler-outline icon-tabler-copy"
+								><path
+									stroke="none"
+									d="M0 0h24v24H0z"
+									fill="none"></path><path
+									d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"
+								></path><path
+									d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"
+								></path></svg
+							></i
+						>
 						<span>Copiar Correo</span>
+					</div>
+					<div class="button-content copied hidden">
+						<i>
+							<svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-check"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l5 5l10 -10" /></svg>
+						</i>
+						<span>Copiado</span>
 					</div>
 				</button>
 			</nav>
 		</section>
-    </article>
-    
+	</article>
 </section>
 
-
 <style>
+	.hidden{
+		display: none;
+	}
 	.profile-section {
 		position: relative;
 		z-index: 1;
-        margin-bottom: 3rem;
+		margin-bottom: 3rem;
 	}
-	.profile-card{
+	.profile-card {
 		margin: 4rem auto;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 	}
-	.profile-card section{
+	.profile-card section {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -66,13 +118,13 @@ const {avatarImg} = Astro.props;
 		object-fit: contain;
 		background-color: var(--profile-bg);
 		border-radius: 50%;
-		box-shadow: 
-        	inset 0 0 0 14px var(--section-bg),
-        	inset 0 0 0 15px var(--border-color-4),
-        	0 0 0 1px var(--border-color-4);
+		box-shadow:
+			inset 0 0 0 14px var(--section-bg),
+			inset 0 0 0 15px var(--border-color-4),
+			0 0 0 1px var(--border-color-4);
 	}
 
-	.profile-nav{
+	.profile-nav {
 		display: flex;
 		gap: 1rem;
 	}
@@ -89,100 +141,126 @@ const {avatarImg} = Astro.props;
 		/* line-height: 1.5; */
 		font-weight: 500;
 	}
-	
-	.contact-button{
+
+	.contact-button {
 		color: var(--light);
 		background-color: var(--button-bg-1);
 	}
-	.email-button{
+	.email-button {
 		cursor: pointer;
 	}
-	.email-button i>svg{
+	.email-button i > svg {
 		stroke: var(--inactive-color);
 	}
-	aside{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-	aside h2, aside p{
-        margin: 0;
-        color: var(--p-color);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    aside h2::before{
-        content: "";
-        display: inline-block;
-        margin-right: 0.5rem;
-        border-radius: 50%;
-        width: 9px;
-        height: 9px;
-        background-color: var(--dash-color);
-    }
+	aside {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	aside h2,
+	aside p {
+		margin: 0;
+		color: var(--p-color);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	aside h2::before {
+		content: "";
+		display: inline-block;
+		margin-right: 0.5rem;
+		border-radius: 50%;
+		width: 9px;
+		height: 9px;
+		background-color: var(--dash-color);
+	}
 
-    aside p{
-        width: 24px;
-        height: 24px;
-        background-color: rgba(40, 199, 128, 0.15);
-        /* padding: 0.15rem 1rem; */
-        border-radius: 50%;
-        color: rgb(3,151,84);
-        font-weight: 600;
-        text-indent: -9999px;
-        font-size: 1rem;
-    }
-    aside p::before{
-        content: "";
-        background-color: rgba(40, 199, 128, 1);
-        border-radius: 50%;
-        width: 9px;
-        height: 9px;
-    }
+	aside p {
+		width: 24px;
+		height: 24px;
+		background-color: rgba(40, 199, 128, 0.15);
+		/* padding: 0.15rem 1rem; */
+		border-radius: 50%;
+		color: rgb(3, 151, 84);
+		font-weight: 600;
+		text-indent: -9999px;
+		font-size: 1rem;
+	}
+	aside p::before {
+		content: "";
+		background-color: rgba(40, 199, 128, 1);
+		border-radius: 50%;
+		width: 9px;
+		height: 9px;
+	}
 
-	@media screen and (min-width:540px) {
-        aside p{
-            width: auto;
-            height: auto;
-            padding: 0.1rem 0.5rem;
-            border-radius: 1rem;
-            text-indent: 0;
-        }
-        aside p::before{
-            content: "";
-            width: 8px;
-            height: 8px;
-            margin-right: 0.5rem;
-        }
-    }
+	@media screen and (min-width: 540px) {
+		aside p {
+			width: auto;
+			height: auto;
+			padding: 0.1rem 0.5rem;
+			border-radius: 1rem;
+			text-indent: 0;
+		}
+		aside p::before {
+			content: "";
+			width: 8px;
+			height: 8px;
+			margin-right: 0.5rem;
+		}
+	}
 
-	@media screen and (min-width:768px) {
-		.profile-card{
+	@media screen and (min-width: 768px) {
+		.profile-card {
 			flex-direction: row;
-			padding: 0 1rem
+			padding: 0 1rem;
 		}
 
-		.profile-card section{
+		.profile-card section {
 			align-items: start;
 			gap: 2rem;
 		}
 
-		.profile-card section:first-child{
+		.profile-card section:first-child {
 			order: 1;
 		}
-		.profile-card section:last-child{
+		.profile-card section:last-child {
 			order: 0;
 		}
 
-		.profile-nav{
-
+		.profile-nav {
 		}
 
-		.profile-info h1, .profile-info p{
+		.profile-info h1,
+		.profile-info p {
 			text-align: left;
 		}
-
 	}
-	
 </style>
+
+<script>
+	const emailBtn = document.getElementById("email-btn") as HTMLButtonElement;
+	const copy = document.querySelector(".copy") as HTMLElement;
+	const copied = document.querySelector(".copied") as HTMLElement;
+	const email = "angeltorreshernan@gmail.com";
+
+	async function setClipboard(text:string) {
+		const type = "text/plain";
+		const clipboardItemData = {
+			[type]: text,
+		};
+		const clipboardItem = new ClipboardItem(clipboardItemData);
+		await navigator.clipboard.write([clipboardItem]);
+	}
+	emailBtn.addEventListener("click", () => {
+		setClipboard(email);
+		copy.classList.toggle("hidden");
+		copied.classList.toggle("hidden");
+		emailBtn.disabled = true;
+		setTimeout(() => {
+			emailBtn.disabled = false;
+			copy.classList.toggle("hidden");
+			copied.classList.toggle("hidden");
+		}, 2500);
+	});
+</script>

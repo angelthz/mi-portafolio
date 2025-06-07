@@ -7,6 +7,7 @@ const projectsCollection = await getCollection('projects');
 const exercisesCollection = await getCollection('exercises');
 const webPagesCollection = await getCollection("webpages");
 const description = `Te muestro los proyectos en los que he trabajado.`;
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Mis Proyectos" description={description}>
@@ -26,7 +27,7 @@ const description = `Te muestro los proyectos en los que he trabajado.`;
 				tags={project.data.tags}
 				imgSrc={project.data.icon.src}
 				imgAlt={project.data.icon.alt}
-				url={`/portafolio/${project.data.slug}`}
+				url={`/proyectos/${project.data.slug}`}
 			></MediumNavCard>)
 		}
     </section>

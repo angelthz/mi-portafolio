@@ -10,6 +10,7 @@ import MediumNavCard from "../components/cards/MediumNavCard.astro";
 const projectCollection = await getCollection('projects');
 const webpagesCollection = await getCollection('webpages');
 const description = `Bienvenido a mi página y portafolio personal, aqui podras encontrar informacion relacionada a mi trabajo.`;
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Inicio" description={description}>
@@ -17,7 +18,7 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 	<section class="projects-section general-section">
 		<header>
 			<h2 class="section-title">Proyectos</h2>
-			<a class="more-button squared-button" href="/portafolio/" aria-label="contact">
+			<a class="more-button squared-button" href=`${BASE_URL}/proyectos/` aria-label="contact">
 				<div class="squared-button-content">
 					<span>Ver todos</span>
 					<i>
@@ -47,7 +48,7 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 	<section class="projects-section general-section">
 		<header>
 			<h2 class="section-title">Paginas Web</h2>
-			<a class="more-button squared-button" href="/portafolio/" aria-label="contact">
+			<a class="more-button squared-button" href=`${BASE_URL}/proyectos/` aria-label="contact">
 				<div class="squared-button-content">
 					<span>Ver todos</span>
 					<i>

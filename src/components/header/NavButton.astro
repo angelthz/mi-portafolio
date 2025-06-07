@@ -17,13 +17,13 @@ const currentPath = new URL(Astro.request.url).pathname;
 const {route, idx, tooltip} = Astro.props;
 ---
 <li class="nav-li">
-    <a href={route} data-tip-text={tooltip===""?"Inicio":tooltip.replaceAll("-"," ")}  class:list={[ 'nav-button', { "active": currentPath === route }]} data-translate-value={`${idx*100}%`}>
-        {route === BASE_URL &&<i><HomeIcon class:list={[{ "active-icon": currentPath===route}]} title='Inicio'></HomeIcon></i>}
-        {route === "/sobre-mi/"&&<i><AboutIcon class:list={[{ "active-icon": currentPath===route}]} title='Sobre mi'></AboutIcon></i>}
-        {route ==="/portafolio/"&&<i><PortfolioIcon class:list={[{ "active-icon": currentPath===route}]} title='Proyectos y trabajos'></PortfolioIcon></i>}
-        {route ==="/notas/"&&<i><NotesIcon class:list={[{ "active-icon": currentPath===route}]} title='Notas'></NotesIcon></i>}
-        {route ==="/contacto/"&&<i><MessageIcon class:list={[{ "active-icon": currentPath===route}]} title='Contacto'></MessageIcon></i>}
-        {route ==="/back/" && <i><BackIcon class="active-icon" title='Regresar'></BackIcon></i>}
+    <a href={`${BASE_URL}${route}`} data-tip-text={tooltip===""?"Inicio":tooltip.replaceAll("-"," ")}  class:list={[ 'nav-button', { "active": currentPath === route }]} data-translate-value={`${idx*100}%`}>
+        {route === "" &&<i><HomeIcon class:list={[{ "active-icon": currentPath===route}]} title='Inicio'></HomeIcon></i>}
+        {route === `/sobre-mi/` &&<i><AboutIcon class:list={[{ "active-icon": currentPath===route}]} title='Sobre mi'></AboutIcon></i>}
+        {route === `/proyectos/` &&<i><PortfolioIcon class:list={[{ "active-icon": currentPath===route}]} title='Proyectos y trabajos'></PortfolioIcon></i>}
+        {route === `/notas/` &&<i><NotesIcon class:list={[{ "active-icon": currentPath===route}]} title='Notas'></NotesIcon></i>}
+        {route === `/contacto/`&&<i><MessageIcon class:list={[{ "active-icon": currentPath===route}]} title='Contacto'></MessageIcon></i>}
+        {route === `/regresar/` && <i><BackIcon class="active-icon" title='Regresar'></BackIcon></i>}
     </a>
 </li>
 
