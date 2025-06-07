@@ -13,7 +13,7 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 const BASE_URL = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Inicio" description={description}>
+<Layout title="Inicio | Bienvenido a mi portafolio web" description={description}>
 	<ProfileSection avatarImg={avatarVec}></ProfileSection>
 	<section class="projects-section general-section">
 		<header>
@@ -33,7 +33,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 				tags={project.data.tags}
 				imgSrc={project.data.icon.src}
 				imgAlt={project.data.icon.alt}
-				url={project.data.slug}
+				url={`/proyectos/${project.data.slug}`}
 			></MediumNavCard>)
 		}
 	</section>
@@ -63,7 +63,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 				tags={web.data.tags}
 				imgSrc={web.data.icon.src}
 				imgAlt={web.data.icon.alt}
-				url={web.data.slug}
+				url={`/web-pages/${web.data.slug}`}
 			></MediumNavCard>)
 		}
 	</section>

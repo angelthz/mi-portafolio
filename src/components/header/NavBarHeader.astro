@@ -13,6 +13,7 @@ const {routes, enableToc=false} = Astro.props;
 const currentPath = new URL(Astro.request.url).pathname;
 const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPath);
 const sanitizedRoutes = routes.map(route => route.replaceAll("/mi-portafolio",""));
+console.log(sanitizedRoutes)
 ---
 <header class="header">
     <div class="header-content">
