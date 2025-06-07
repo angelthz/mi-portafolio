@@ -71,10 +71,27 @@ p{
   // box-shadow: rgba(10, 10, 10, 0.06) 0px 1.2px 1.2px 0px, rgba(10, 10, 10, 0.04) 0px 5px 10px 0px;
 }
 
-@media screen and (min-width:920px) {
+@media screen and (min-width:768px) {
   .main-container{
-      max-width: 720px;
+      max-width: 640px;
   }
+}
+
+.main-title{
+  margin: 0;
+  color: var(--p-color);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.main-title::before{
+  content: "";
+  display: inline-block;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  width: 9px;
+  height: 9px;
+  background-color: var(--dash-color);
 }
 
 .general-section{
@@ -226,6 +243,7 @@ p{
   content: attr(data-tip-text);
   position: absolute;
   top: 0;
+  // width: 100%;
   padding: 1px 8px;
   display: block;
   margin: 0 auto;
@@ -239,6 +257,7 @@ p{
   border-radius: 1rem;
   text-transform: capitalize;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 [data-tip-text]:hover::before{

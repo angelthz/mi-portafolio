@@ -11,6 +11,8 @@ icon:
     alt: 'Icono del ejercicio'
 tags: ["javascript","html","css"]
 slug: "game-of-life"
+code: "/"
+url: "/"
 ---
 
 # Newsletter Post 1

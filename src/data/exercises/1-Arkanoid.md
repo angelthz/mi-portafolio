@@ -11,8 +11,6 @@ icon:
     alt: 'Icono del ejercicio'
 tags: ["typescript", "html", "css"]
 slug: "arkanoid"
+code: "/"
+url: "https://arkanoid-game-ts.netlify.app/"
 ---
-
-# Newsletter Post 1
-
-Hello World

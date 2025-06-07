@@ -1,0 +1,78 @@
+---
+import { getEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import '../../styles/markdown_project.scss'
+
+export const getStaticPaths = async () => {
+    const webPages = await getCollection('webpages'); 
+    console.log(webPages)
+    return webPages.map(web=>({
+        params: {slug: web.data.slug}
+    }));
+}
+
+const {slug} = Astro.params;
+const entry = await getEntry('webpages',slug);
+console.log(entry)
+if (!entry) {
+   // Handle Error, for example:
+  throw new Error('Could not find the post');
+}
+const {Content} = await render(entry);
+console.log(Content)
+---
+<Layout title={entry.data.title}>
+    <section class="project-header">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Cliente</td>
+                    <td>Reservado</td>
+                </tr>
+                <tr>
+                    <td>Compañia</td>
+                    <td>Reservado</td>
+                </tr>
+                <tr>
+                    <td>Tipo de Proyecto</td>
+                    <td>Portafolio Web</td>
+                </tr>
+                <tr>
+                    <td>Año</td>
+                    <td>2024</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="project-body">
+        <article class="project">
+            <Content></Content>
+        </article>
+    </section>
+</Layout>
+
+<style>
+    .project-header{
+        /* padding: 0.5rem 1rem; */
+        background-color: var(--body-bg);
+        border-radius: var(--border-radius-md);
+        /* border: 1px solid #ccc; */
+        box-shadow: var(--shadow-xs);
+        /* color: var(--text-300); */
+        font-weight: 500;
+        padding: 1rem;
+    }
+
+    .project-header tr td:first-of-type{
+        color: var(--h-color);
+    }
+    .project-header tr td:last-of-type{
+        color: var(--p-color);
+    }
+    .project-body{
+        padding: 1rem;
+    }
+    
+</style>

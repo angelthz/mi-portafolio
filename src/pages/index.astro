@@ -6,8 +6,9 @@ import { getCollection } from "astro:content";
 import SmallNavCard from "../components/cards/SmallNavCard.astro";
 import MediumNavCard from "../components/cards/MediumNavCard.astro";
 
-const exercisesCollection = await getCollection('exercises');
+// const exercisesCollection = await getCollection('exercises');
 const projectCollection = await getCollection('projects');
+const webpagesCollection = await getCollection('webpages');
 const description = `Bienvenido a mi página y portafolio personal, aqui podras encontrar informacion relacionada a mi trabajo.`;
 ---
 
@@ -16,7 +17,7 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 	<section class="projects-section general-section">
 		<header>
 			<h2 class="section-title">Proyectos</h2>
-			<a class="more-button squared-button" href="/projects/" aria-label="contact">
+			<a class="more-button squared-button" href="/portafolio/" aria-label="contact">
 				<div class="squared-button-content">
 					<span>Ver todos</span>
 					<i>
@@ -35,11 +36,41 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 			></MediumNavCard>)
 		}
 	</section>
+	
+	<section class="general-section">
+		<article class="general-article">
+			<h2>Mis Proyectos</h2>
+			<p>En esta sección encontrarás una selección de mis proyectos más destacados, donde aplico mis habilidades en desarrollo web y diseño. Explora cada uno para conocer más sobre mi trabajo y experiencia.</p>
+		</article>
+	</section>
 
-	<section class="products-section general-section">
+	<section class="projects-section general-section">
+		<header>
+			<h2 class="section-title">Paginas Web</h2>
+			<a class="more-button squared-button" href="/portafolio/" aria-label="contact">
+				<div class="squared-button-content">
+					<span>Ver todos</span>
+					<i>
+						<svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
+					</i>
+				</div>
+			</a>
+		</header>
+		{
+			webpagesCollection.map(web=><MediumNavCard
+				title={web.data.title}
+				tags={web.data.tags}
+				imgSrc={web.data.icon.src}
+				imgAlt={web.data.icon.alt}
+				url={web.data.slug}
+			></MediumNavCard>)
+		}
+	</section>
+
+	<!-- <section class="products-section general-section">
 		<header>
 			<h2 class="section-title">Ejercicios</h2>
-			<a class="more-button squared-button" href="/projects/" aria-label="contact">
+			<a class="more-button squared-button" href="/portafolio/" aria-label="contact">
 				<div>
 					<span>Ver todos</span>
 					<i><svg width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg></i>
@@ -51,16 +82,12 @@ const description = `Bienvenido a mi página y portafolio personal, aqui podras 
 				title={project.data.title}
 				imgSrc={project.data.icon.src}
 				imgAlt={project.data.icon.alt}
+				codeUrl={project.data.code}
+				url={project.data.url}
 			></SmallNavCard>)
 		}
-	</section>
+	</section> -->
 
-	<section class="general-section">
-		<article class="general-article">
-			<h2>Mis Proyectos</h2>
-			<p>Discover my portfolio, where purposeful interfaces meet captivating design. My work strives to enhance experiences and inspire.</p>
-		</article>
-	</section>
 
 </Layout>
 

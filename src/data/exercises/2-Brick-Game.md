@@ -11,6 +11,8 @@ icon:
     alt: 'Icono del ejercicio'
 tags: ["typescript","html","css"]
 slug: "brick-game"
+code: "/"
+url: "/"
 ---
 
 # Newsletter Post 1

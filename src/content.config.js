@@ -14,11 +14,28 @@ const exercisesCollection = defineCollection({
         alt: z.string()
     }),
     slug: z.string(),
+    code: z.string(),
+    url: z.string()
   })
 });
 
 const projectsCollection = defineCollection({
   loader : glob({ pattern: '**/*.md', base: './src/data/projects' }),
+  schema: ({image}) => z.object({
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    author: z.string(),
+    tags: z.array(z.string()),
+    icon: z.object({
+      src : image(),
+      alt: z.string()
+    }),
+    slug: z.string()
+  })
+});
+const webPagesCollection = defineCollection({
+  loader : glob({ pattern: '**/*.md', base: './src/data/web-pages' }),
   schema: ({image}) => z.object({
     title: z.string(),
     pubDate: z.date(),
@@ -54,6 +71,7 @@ const getNotesCollection = (path) => {
 export const collections = { 
   exercises: exercisesCollection, 
   projects: projectsCollection,
+  webpages: webPagesCollection,
   "CSS": getNotesCollection('./src/data/notes/css'),
   "Javascript Parte Uno" : getNotesCollection('./src/data/notes/javascript/parte-uno'),
   "Javascript Parte Dos" : getNotesCollection('./src/data/notes/javascript/parte-dos'),

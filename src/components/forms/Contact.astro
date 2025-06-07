@@ -1,18 +1,24 @@
-<form id="contact-form">
+<form id="contact-form" class="contact-form">
     <fieldset class="contact-info">
         <!-- <label for="name">Nombre</label> -->
-        <input type="text" name="name" id="name" placeholder="Nombre" required>
+        <input type="text" name="name" id="name" placeholder="Nombre" required data-regx="[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+">
         <!-- <label for="email">Correo</label> -->
-        <input type="email" name="email" id="email" placeholder="Correo electronico" required>
+        <input type="email" name="email" id="email" placeholder="Correo electronico" required data-regx="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$">
     </fieldset>
     <fieldset class="subject-info">
         <input type="text" name="subject" id="subject" placeholder="Asunto" required>
     </fieldset>
     <!-- <label for="subject">Asunto</label> -->
     <fieldset class="message-info">
-        <textarea name="comments" id="comments" placeholder="Comentarios"></textarea>
+        <textarea name="comments" id="comments" placeholder="Comentarios" required data-regx="^.{1,255}$"></textarea>
     </fieldset>
-    <input class="squared-button" type="submit" value="Enviar">
+    <label for="send-email" class="email-label squared-button">
+        <div>
+            <span class="send-label" id="send-label">Enviar</span>
+            <i class="send-loader hidden" id="send-loader"><svg viewBox="0 0 200 200"><radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset=".3" stop-color="#FFFFFF" stop-opacity=".9"></stop><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".6"></stop><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".3"></stop><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop></radialGradient><circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="28" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform></circle><circle transform-origin="center" fill="none" opacity=".2" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" cx="100" cy="100" r="70"></circle></svg></i>
+        </div>
+    </label>
+    <input type="submit" value="Enviar" id="send-email" hidden>
 </form>
 
 <style>
@@ -22,8 +28,6 @@
         width: 100%;
         padding: 1rem;
         background-color: var(--input-bg);
-        /* border: 1px solid transparent; */
-        /* border: 2px solid var(--bg-400); */
         border: none;
         border-radius: var(--border-radius-md); 
         font-size: 1rem;
@@ -34,19 +38,22 @@
 
     input::placeholder, textarea::placeholder{
         color: var(--p-color);
-        /* font-weight: 600; */
     }
     input[type="text"]:focus, input[type="email"]:focus, textarea:focus{
-        /* outline: red; */
-        /* border: 1px solid var(--bg-100); */
-        /* border-color: white; */
         color: var(--h-color);
-        /* font-size: 1rem; */
-        /* font-weight: 600; */
         box-shadow: 0 0 0 1px var(--dash-color);
-
+        transition: box-shadow 0.3s ease-in-out;
+        
+    }
+    input[type="text"]:valid, input[type="email"]:valid, textarea:valid{
+        box-shadow: inset 0 0 0 100px var(--input-bg);
     }
     input[type="submit"]{
+        /* width: 0; */
+        /* height: 0; */
+        /* visibility: hidden; */
+    }
+    .email-label{
         display: block;
         width: 100%;
         padding: 0.8rem;
@@ -58,7 +65,7 @@
         cursor: pointer;
     }
     
-    input[type="submit"]:hover{
+    .email-label:hover{
         box-shadow: none;
         background-color: var(--hover-3);
     }
@@ -73,11 +80,12 @@
 
     .contact-info{
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         gap: 1rem;
     }
     .contact-info input{
-        width: 50%; 
+        width: 100%; 
         display: inline-block;
     }
     textarea{
@@ -89,15 +97,80 @@
         height: 10rem;
         color: var(--h-color);
     }
+
+    .email-label{
+
+    }
+    .send-loader svg{
+        width: 22px;
+        height: 22px;
+    }
+    .error{
+        box-shadow: inset 0 0 0 100px var(--input-bg), 0 0 0 2px red !important;
+    }
+    .hidden{
+        display: none;
+    }
+
+    @media screen and (min-width: 768px){
+        .contact-info{
+            flex-direction: row;
+        }
+        .contact-info input{
+            width: 50%; 
+        }
+    }
 </style>
 
 <script>
     //get form
     const form = document.getElementById("contact-form") as HTMLFormElement;
+    const sendLabel = document.getElementById("send-label") as HTMLFormElement;
+    const sendLoader = document.getElementById("send-loader") as HTMLFormElement;
+    const blankRegex = /^\s+/;
 
+    //show error
+    function validate(input, res){
+        if(res)
+            return document.getElementById(input.name).classList.add("error");
+        else
+            return document.getElementById(input.name).classList.remove("error");
+    }
+    //validate inputs
+    form.addEventListener("input", (e) => {
+        if(! e.target.matches(".contact-form [required]")) return;
+        const pattern = e.target.dataset.regx;
+        const input = e.target;
+        if(pattern && input.value.length !== 0){
+            let regx = new RegExp(pattern);
+            validate(input, !regx.test(input.value));
+        }
+        if(!pattern){
+            validate(input, input.value === "" || blankRegex.test(input.value));
+        }
+    })
+
+    //send form
     form.addEventListener("submit", e=>{
         e.preventDefault();
-        
+        sendLabel.classList.add("hidden");
+        sendLoader.classList.remove("hidden");
+        fetch("https://formsubmit.co/ajax/viweroj689@oronny.com",{
+            method: "POST",
+            body: new FormData(e.target)
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(res))
+        .then(data => {
+            console.log(data);
+            form.reset();
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+        .finally(() => {
+            sendLabel.classList.remove("hidden");
+            sendLoader.classList.add("hidden");
+        });
+        e.stopPropagation();
     });
-    
 </script>

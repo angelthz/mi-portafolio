@@ -11,6 +11,8 @@ icon:
     alt: 'Icono del ejercicio'
 tags: ["typescrip", "sass", "react"]
 slug: "25-clock"
+code: "/"
+url: "https://25-clock-react.netlify.app/"
 ---
 
 # Newsletter Post 1

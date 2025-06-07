@@ -35,11 +35,18 @@ audio que utilizemos. Su uso mas comun es para mostrar la informacion del artist
 
 ## Problematica
 
-lorem
+A pesar de que muchos archivos ".mp3" contienen etiquetas con información relevante, no siempre incluyen las letras de las canciones o estas no están sincronizadas correctamente. Además, editar o agregar letras sincronizadas manualmente puede ser un proceso tedioso y poco intuitivo para usuarios sin conocimientos técnicos. Esto dificulta la experiencia de quienes desean visualizar las letras mientras escuchan música o mantener organizada su biblioteca de audio con metadatos completos y precisos.
 
 ![Mp3 snapshoot dos](./images/mp3/mp3-4.png)
 
 
 ## Solucion
 
-lorem
+La aplicación MP3 Lyrics resuelve estos problemas proporcionando una interfaz intuitiva para extraer, editar y sincronizar letras de canciones en archivos ".mp3". Permite:
+
+- Cargar archivos de audio y visualizar sus metadatos existentes.
+- Editar o agregar letras de manera manual o automática.
+- Sincronizar las letras con la reproducción de la canción, facilitando la creación de archivos LRC.
+- Exportar los archivos con las letras y metadatos actualizados para su uso en cualquier reproductor compatible.
+
+De esta manera, los usuarios pueden mantener organizada su biblioteca musical y disfrutar de una experiencia enriquecida al escuchar sus canciones favoritas.

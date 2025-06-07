@@ -28,7 +28,7 @@ const distance = enableToc ? routes.indexOf("/notes/"): routes.indexOf(currentPa
         </nav>
         <aside class="secondary-navbar">
             <ThemeButton></ThemeButton>
-            { !enableToc&& <a class="rounded-button contact-button" href="/contact/" data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
+            { !enableToc&& <a class="rounded-button contact-button" href="/contacto/" data-tip-text="contacto" aria-label="contact" > <i><MessageIcon></MessageIcon></i> </a> }
             { enableToc && <TocButton></TocButton> }
         </aside>
     </div>

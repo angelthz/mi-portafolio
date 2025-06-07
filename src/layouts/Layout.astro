@@ -17,14 +17,15 @@ interface Props{
     enableToc?: boolean;
 }
 
-const {title, routes=["/","/about/","/projects/","/notes/"], enableToc=false, toc, description} = Astro.props;
+const {title, routes=["/","/sobre-mi/","/portafolio/","/notas/"], enableToc=false, toc, description} = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.jpg">
     {title && <meta name="description" content={description}/>}
     <title>{title}</title>
     <ClientRouter></ClientRouter>
